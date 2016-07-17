@@ -305,18 +305,38 @@ class Compiler {
     }
 
     /// Try to parse a string literal.
+    /// Note: string is ASCII or UTF-8.
     ///
-    /// SUCCESS: return the content of the string literal.
-    /// FAILURE: return FALSE.
+    /// SUCCESS   : return the content of the string literal.
+    /// NOT STRING: return FALSE.
+    /// SYNTAX ERR: return NULL.
     private function next_string() {
         if ($this->cur() != '"') {
             return FALSE; // String literal starts with double-quote.
         }
         $this->next(); // Skip double-quote.
 
-        // TODO: unimplemented! scan string
+        $literal = ""; // Store scanned literal here.
+        while (true) {
+            $char = $this->next();
+            $byte = ord($char);
 
-        return FALSE; // on error
+            if ($byte & 0x80) {
+                // Automatically add multi-byte chars.
+                $literal = $literal . $char;
+            } elseif ($char == '"') {
+                // Stop at double-quote or end of input.
+                break;
+            } elseif ($char == FALSE) {
+                // Unexpected end of input.
+                return NULL;
+            } else {
+                // Add any other ASCII character.
+                $literal = $literal . $char;
+            }
+        }
+
+        return $literal;
     }
 
     /// Compile a command list into byte code.

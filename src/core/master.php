@@ -323,6 +323,7 @@ class Compiler {
 
             if ($char == '"') {
                 // Stop at double-quote or end of input.
+                $this->next(); // Consume the quote.
                 break;
             } elseif ($char == FALSE) {
                 // Unexpected end of input.

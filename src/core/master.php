@@ -17,7 +17,6 @@ class Token {
     const WORD_FROM         = 0x0A;
     const WORD_TO           = 0x0B;
     const WORD_DESCRIBE     = 0x0C;
-    const WORD_ABOUT        = 0x0D;
     const WORD_TRANSACTION  = 0x0E;
     const WORD_MOVE         = 0x0F;
     const WORD_DATE         = 0x10;

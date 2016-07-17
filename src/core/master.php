@@ -336,6 +336,14 @@ class Parse {
 
         return $literal;
     }
+
+    /// Skip all spaces and other unimportant garbage.
+    public function skip_garbage() {
+        $char = $this->cur();
+        while($char == ' ' || $char == '\n' || $char == '\t') {
+            $char = $this->next();
+        }
+    }
 }
 
 class Interpreter {

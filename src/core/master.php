@@ -321,17 +321,14 @@ class Compiler {
             $char = $this->next();
             $byte = ord($char);
 
-            if ($byte & 0x80) {
-                // Automatically add multi-byte chars.
-                $literal = $literal . $char;
-            } elseif ($char == '"') {
+            if ($char == '"') {
                 // Stop at double-quote or end of input.
                 break;
             } elseif ($char == FALSE) {
                 // Unexpected end of input.
                 return NULL;
             } else {
-                // Add any other ASCII character.
+                // Add any other character.
                 $literal = $literal . $char;
             }
         }

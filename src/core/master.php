@@ -337,6 +337,26 @@ class Parse {
         return $literal;
     }
 
+    /// Try parsing next symbol.
+    ///
+    /// SUCCESS: return symbol token type.
+    /// FAILURE: return FALSE.
+    public function next_symbol() {
+        $cur = $this->cur();
+        $this->index += 1;
+
+        if ($cur == ',') {
+            return COMMA;
+        } elseif ($cur == ';') {
+            return SEMICOLON;
+        }
+
+        // Revert.
+        $this->index -= 1;
+        // Indicate error.
+        return FALSE;
+    }
+
     /// Skip all spaces and other unimportant garbage.
     public function skip_garbage() {
         $char = $this->cur();

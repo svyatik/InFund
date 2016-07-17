@@ -17,7 +17,8 @@ class Token {
         $this->type = $type;
     }
 
-    /// Data is a string with actual read token.
+    /// Data is a parsed and interpreted string. It is of a type defined in the
+    /// $type variable.
     public function data() {
         return $this->data;
     }

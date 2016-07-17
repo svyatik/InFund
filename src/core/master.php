@@ -353,6 +353,10 @@ class Interpreter {
     ///
     /// $cmdstr - a command string to interpret.
     public static function interpret($cmdstr) {
+        $parser = new Parser($cmdstr);
 
+        while (true) {
+            // TODO: unpimplemented!
+        }
     }
 }

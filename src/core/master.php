@@ -100,6 +100,7 @@ class Compiler {
     ///
     /// $cmdstr - string with commands to parse and compile.
     public static function compile($cmdstr) {
+        $compiler = new Compiler($cmdstr);
         // TODO: unimplemented!
     }
 }

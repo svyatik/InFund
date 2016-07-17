@@ -352,7 +352,7 @@ class Interpreter {
     /// the database or other internal data.
     ///
     /// $cmdstr - a command string to interpret.
-    public function interpret($cmdstr) {
-        // TODO: unimplemented!
+    public static function interpret($cmdstr) {
+
     }
 }

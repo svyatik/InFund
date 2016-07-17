@@ -76,7 +76,7 @@ class Tokenizer {
 
     /// Build a token tree of given command.
     ///
-    ///$str - string with commands to parse.
+    /// $str - string with commands to parse.
     public static function buildTree($str) {
         // TODO: unimplemented!
     }

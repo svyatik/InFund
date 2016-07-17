@@ -1,4 +1,4 @@
-<?php
+<?php header('Content-type: charset=utf-8');
 
 /// Class represents a single token from the received command string.
 class Token {

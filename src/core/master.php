@@ -69,9 +69,9 @@ class Token {
     }
 }
 
-/// Parse all tokens into compiled interpreter byte-code. If there is syntax
-/// error, Compiler will raise an error.
-class Compiler {
+/// Parse all tokens for interpreter. If there is syntax
+/// error, Parser will raise an error.
+class Parse {
 
     /// Index of the current byte in the $cmdstr.
     var $index;
@@ -106,7 +106,7 @@ class Compiler {
         return strtoupper($this->next($count, $skip));
     }
 
-    private function Compiler($cmdstr) {
+    function Parser($cmdstr) {
         $this->cmdstr = $cmdstr;
         $this->index = 0;
     }
@@ -120,7 +120,7 @@ class Compiler {
     ///
     /// SUCCESS: return a token type of the word.
     /// FAILURE: return FALSE.
-    private function next_word() {
+    public function next_word() {
         // Make backup for index in case we will fail to parse the word.
         $index_backup = $this->index;
 
@@ -310,7 +310,7 @@ class Compiler {
     /// SUCCESS   : return the content of the string literal.
     /// NOT STRING: return FALSE.
     /// SYNTAX ERR: return NULL.
-    private function next_string() {
+    public function next_string() {
         if ($this->cur() != '"') {
             return FALSE; // String literal starts with double-quote.
         }
@@ -335,14 +335,6 @@ class Compiler {
         }
 
         return $literal;
-    }
-
-    /// Compile a command list into byte code.
-    ///
-    /// $cmdstr - string with commands to parse and compile.
-    public static function compile($cmdstr) {
-        $compiler = new Compiler($cmdstr);
-        // TODO: unimplemented!
     }
 }
 

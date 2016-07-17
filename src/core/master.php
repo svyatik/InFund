@@ -85,10 +85,18 @@ class Compiler {
         return $this->cmdstr[$this->index];
     }
 
+    private function cur_up() {
+        returh strtoupper($this->cur())
+    }
+
     /// Move to next byte in the string.
     private function next() {
         $this->index += 1;
         return $this->cur();
+    }
+
+    private function next_up() {
+        returh strtoupper($this->next())
     }
 
     private function Compiler($cmdstr) {

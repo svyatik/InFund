@@ -70,25 +70,25 @@ class Token {
     }
 }
 
-/// Parse all tokens into one complete tree. If there is syntax error,
-/// Tokenizer will raise error.
-class Tokenizer {
+/// Parse all tokens into compiled interpreter byte-code. If there is syntax
+/// error, Compiler will raise an error.
+class Compiler {
 
-    /// Build a token tree of given command.
+    /// Compile a command list into byte code.
     ///
-    /// $str - string with commands to parse.
-    public static function buildTree($str) {
+    /// $cmdstr - string with commands to parse and compile.
+    public static function compile($cmdstr) {
         // TODO: unimplemented!
     }
 }
 
 class Interpreter {
 
-    /// Interpret some command and execute it. This will possibly change
+    /// Interpret given commands and execute them. This will possibly change
     /// the database or other internal data.
     ///
-    /// $cmd - a command list to interpret.
-    public function interpret($cmd) {
+    /// $cmdstr - a command string to interpret.
+    public function interpret($cmdstr) {
         // TODO: unimplemented!
     }
 }

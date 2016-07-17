@@ -33,6 +33,52 @@ class Token {
 /// Tokenizer will raise error.
 class Tokenizer {
 
+    const WORD_ABOUT        = 0x00;
+    const WORD_CREATE       = 0x01;
+    const WORD_DROP         = 0x02;
+    const WORD_CURRENCY     = 0x03;
+    const WORD_FUND         = 0x04;
+    const WORD_USER         = 0x05;
+    const WORD_FILTER       = 0x06;
+    const WORD_SUGGESTION   = 0x07;
+    const WORD_REVIVE       = 0x08;
+    const WORD_TRANSACT     = 0x09;
+    const WORD_FROM         = 0x0A;
+    const WORD_TO           = 0x0B;
+    const WORD_DESCRIBE     = 0x0C;
+    const WORD_ABOUT        = 0x0D;
+    const WORD_TRANSACTION  = 0x0E;
+    const WORD_MOVE         = 0x0F;
+    const WORD_DATE         = 0x10;
+    const WORD_RENAME       = 0x11;
+    const WORD_ALLOW        = 0x12;
+    const WORD_ANONYMOUS    = 0x13;
+    const WORD_OWN          = 0x14;
+    const WORD_ADMIN        = 0x15;
+    const WORD_VIEW         = 0x16;
+    const WORD_EDIT         = 0x17;
+    const WORD_PROPOSE      = 0x18;
+    const WORD_NONE         = 0x19;
+    const WORD_SUGGEST      = 0x1A;
+    const WORD_CONVERT      = 0x1C;
+    const WORD_HISTORY      = 0x1D;
+    const WORD_CURRENT      = 0x1E;
+    const WORD_INCLUDE      = 0x1F;
+    const WORD_EXCLUDE      = 0x20;
+    const WORD_REQUIRE      = 0x21;
+    const WORD_RELEASE      = 0x22;
+    const WORD_TIME         = 0x23;
+    const WORD_RANGE        = 0x24;
+    const WORD_UNTIL        = 0x25;
+    const WORD_SINCE        = 0x26;
+    const WORD_SAVE         = 0x27;
+    const WORD_FILTRATE     = 0x28;
+    const COMMA             = 0x29;
+    const SEMICOLON         = 0x2A;
+    const STRING            = 0x2B;
+    const NUMBER            = 0x2C;
+    const DATE_TIME         = 0x2D;
+
     /// Build a token tree of given command.
     ///
     ///$str - string with commands to parse.

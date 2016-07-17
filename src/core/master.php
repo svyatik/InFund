@@ -85,6 +85,8 @@ class Compiler {
         return $this->cmdstr[$this->index];
     }
 
+    /// The same as cur(), but returns all upper case letters. Use to simulate
+    /// case insensitive parser.
     private function cur_up() {
         returh strtoupper($this->cur())
     }
@@ -95,6 +97,8 @@ class Compiler {
         return $this->cur();
     }
 
+    /// The same as next(), but returns all upper case letters. Use to simulate
+    /// case insensitive parser.
     private function next_up() {
         returh strtoupper($this->next())
     }

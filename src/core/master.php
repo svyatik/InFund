@@ -4,35 +4,6 @@
 class Token {
 
     /// Token types
-    const WORD      = 1 << 0;
-    const NUMBER    = 1 << 1;
-    const DATE_TIME = 1 << 2;
-        // Add more when needed
-
-    var $data;
-    var $type;
-
-    public function Token($data, $type) {
-        $this->data = $data;
-        $this->type = $type;
-    }
-
-    /// Data is a parsed and interpreted string. It is of a type defined in the
-    /// $type variable.
-    public function data() {
-        return $this->data;
-    }
-
-    /// Type is a token type from an enumeration of types.
-    public function type() {
-        return $this->type;
-    }
-}
-
-/// Parse all tokens into one complete tree. If there is syntax error,
-/// Tokenizer will raise error.
-class Tokenizer {
-
     const WORD_ABOUT        = 0x00;
     const WORD_CREATE       = 0x01;
     const WORD_DROP         = 0x02;
@@ -78,6 +49,30 @@ class Tokenizer {
     const STRING            = 0x2B;
     const NUMBER            = 0x2C;
     const DATE_TIME         = 0x2D;
+
+    var $data;
+    var $type;
+
+    public function Token($data, $type) {
+        $this->data = $data;
+        $this->type = $type;
+    }
+
+    /// Data is a parsed and interpreted string. It is of a type defined in the
+    /// $type variable.
+    public function data() {
+        return $this->data;
+    }
+
+    /// Type is a token type from an enumeration of types.
+    public function type() {
+        return $this->type;
+    }
+}
+
+/// Parse all tokens into one complete tree. If there is syntax error,
+/// Tokenizer will raise error.
+class Tokenizer {
 
     /// Build a token tree of given command.
     ///

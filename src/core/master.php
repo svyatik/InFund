@@ -74,6 +74,28 @@ class Token {
 /// error, Compiler will raise an error.
 class Compiler {
 
+    /// Index of the current byte in the $cmdstr.
+    var $index;
+
+    /// String with commands to parse and compile.
+    var $cmdstr;
+
+    /// Get current byte in the string.
+    private function cur() {
+        return $this->cmdstr[$this->index];
+    }
+
+    /// Move to next byte in the string.
+    private function next() {
+        $this->index += 1;
+        return $this->cur();
+    }
+
+    private function Compiler($cmdstr) {
+        $this->cmdstr = $cmdstr;
+        $this->index = 0;
+    }
+
     /// Compile a command list into byte code.
     ///
     /// $cmdstr - string with commands to parse and compile.

@@ -29,6 +29,18 @@ class Token {
     }
 }
 
+/// Parse all tokens into one complete tree. If there is syntax error,
+/// Tokenizer will raise error.
+class Tokenizer {
+
+    /// Build a token tree of given command.
+    ///
+    ///$str - string with commands to parse.
+    public static function buildTree($str) {
+        // TODO: unimplemented!
+    }
+}
+
 class Interpreter {
 
     /// Interpret some command and execute it. This will possibly change

@@ -80,27 +80,31 @@ class Compiler {
     /// String with commands to parse and compile.
     var $cmdstr;
 
-    /// Get current byte in the string.
-    private function cur() {
-        return $this->cmdstr[$this->index];
+    /// Get current byte or range in the string.
+    /// Return false on error.
+    ///
+    /// $count - how many bytes to return.
+    private function cur($count = 1) {
+        return substr($this->cmdstr, $this->index, $count);
     }
 
     /// The same as cur(), but returns all upper case letters. Use to simulate
     /// case insensitive parser.
-    private function cur_up() {
-        returh strtoupper($this->cur())
+    private function cur_up($count = 1) {
+        returh strtoupper($this->cur($count));
     }
 
-    /// Move to next byte in the string.
-    private function next() {
+    /// Move to next bytes in the string.
+    /// $skip - how many bytes to skip in the string.
+    private function next($count = 1, $skip = 1) {
         $this->index += 1;
-        return $this->cur();
+        return $this->cur($count);
     }
 
     /// The same as next(), but returns all upper case letters. Use to simulate
     /// case insensitive parser.
-    private function next_up() {
-        returh strtoupper($this->next())
+    private function next_up($skip = 1) {
+        return strtoupper($this->next($skip));
     }
 
     private function Compiler($cmdstr) {

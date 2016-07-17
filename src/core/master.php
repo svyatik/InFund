@@ -2,6 +2,13 @@
 
 /// Class represents a single token from the received command string.
 class Token {
+
+    /// Token types
+    const WORD      = 1 << 0;
+    const NUMBER    = 1 << 1;
+    const DATE_TIME = 1 << 2;
+        // Add more when needed
+
     var $data;
     var $type;
 

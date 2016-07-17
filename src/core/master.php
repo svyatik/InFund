@@ -116,6 +116,194 @@ class Compiler {
         return ctype_alpha($char[0]); // Test only first character.
     }
 
+    /// Try to parse a word from the string.
+    ///
+    /// SUCCESS: return a token type of the word.
+    /// FAILURE: return FALSE.
+    private function next_word() {
+        // Make backup for index in case we will fail to parse the word.
+        $index_backup = $this->index;
+
+        // Strings to compare. Slices of 2, 3 and more characters.
+        $a2     = $this->cur_up(2);
+        $a3     = $this->cur_up(3);
+        $a4     = $this->cur_up(4);
+        $a5     = $this->cur_up(5);
+        $a6     = $this->cur_up(6);
+        $a7     = $this->cur_up(7);
+        $a8     = $this->cur_up(8);
+        $a9     = $this->cur_up(9);
+        $a10    = $this->cur_up(10);
+        $a11    = $this->cur_up(11);
+
+        if ($a2 == 'TO') {
+            if (!self::isWordPart($this->next_up(1, 2))) {
+                return WORD_TO;
+            }
+        } elseif ($a3 == 'OWN') {
+            if (!self::isWordPart($this->next_up(1, 3))) {
+                return WORD_OWN;
+            }
+        } elseif ($a4 == 'DROP') {
+            if (!self::isWordPart($this->next_up(1, 4))) {
+                return WORD_DROP;
+            }
+        } elseif ($a4 == 'FUND') {
+            if (!self::isWordPart($this->next_up(1, 4))) {
+                return WORD_FUND;
+            }
+        } elseif ($a4 == 'USER') {
+            if (!self::isWordPart($this->next_up(1, 4))) {
+                return WORD_USER;
+            }
+        } elseif ($a4 == 'FROM') {
+            if (!self::isWordPart($this->next_up(1, 4))) {
+                return WORD_FROM;
+            }
+        } elseif ($a4 == 'MOVE') {
+            if (!self::isWordPart($this->next_up(1, 4))) {
+                return WORD_MOVE;
+            }
+        } elseif ($a4 == 'DATE') {
+            if (!self::isWordPart($this->next_up(1, 4))) {
+                return WORD_DARE;
+            }
+        } elseif ($a4 == 'VIEW') {
+            if (!self::isWordPart($this->next_up(1, 4))) {
+                return WORD_VIEW;
+            }
+        } elseif ($a4 == 'EDIT') {
+            if (!self::isWordPart($this->next_up(1, 4))) {
+                return WORD_EDIT;
+            }
+        } elseif ($a4 == 'NONE') {
+            if (!self::isWordPart($this->next_up(1, 4))) {
+                return WORD_NONE;
+            }
+        } elseif ($a4 == 'TIME') {
+            if (!self::isWordPart($this->next_up(1, 4))) {
+                return WORD_TIME;
+            }
+        } elseif ($a4 == 'SAVE') {
+            if (!self::isWordPart($this->next_up(1, 4))) {
+                return WORD_SAVE;
+            }
+        } elseif ($a5 == 'ABOUT') {
+            if (!self::isWordPart($this->next_up(1, 5))) {
+                return WORD_ABOUT;
+            }
+        } elseif ($a5 == 'ALLOW') {
+            if (!self::isWordPart($this->next_up(1, 5))) {
+                return WORD_ALLOW;
+            }
+        } elseif ($a5 == 'ADMIN') {
+            if (!self::isWordPart($this->next_up(1, 5))) {
+                return WORD_ADMIN;
+            }
+        } elseif ($a5 == 'RANGE') {
+            if (!self::isWordPart($this->next_up(1, 5))) {
+                return WORD_RANGE;
+            }
+        } elseif ($a5 == 'UNTIL') {
+            if (!self::isWordPart($this->next_up(1, 5))) {
+                return WORD_UNTIL;
+            }
+        } elseif ($a5 == 'SINCE') {
+            if (!self::isWordPart($this->next_up(1, 5))) {
+                return WORD_SINCE;
+            }
+        } elseif ($a6 == 'CREATE') {
+            if (!self::isWordPart($this->next_up(1, 6))) {
+                return WORD_CREATE;
+            }
+        } elseif ($a6 == 'FILTER') {
+            if (!self::isWordPart($this->next_up(1, 6))) {
+                return WORD_FILTER;
+            }
+        } elseif ($a6 == 'REVIVE') {
+            if (!self::isWordPart($this->next_up(1, 6))) {
+                return WORD_REVIVE;
+            }
+        } elseif ($a6 == 'RENAME') {
+            if (!self::isWordPart($this->next_up(1, 6))) {
+                return WORD_RENAME;
+            }
+        } elseif ($a7 == 'PROPOSE') {
+            if (!self::isWordPart($this->next_up(1, 7))) {
+                return WORD_PROPOSE;
+            }
+        } elseif ($a7 == 'SUGGEST') {
+            if (!self::isWordPart($this->next_up(1, 7))) {
+                return WORD_SUGGEST;
+            }
+        } elseif ($a7 == 'CONVERT') {
+            if (!self::isWordPart($this->next_up(1, 7))) {
+                return WORD_CONVERT;
+            }
+        } elseif ($a7 == 'HISTORY') {
+            if (!self::isWordPart($this->next_up(1, 7))) {
+                return WORD_HISTORY;
+            }
+        } elseif ($a7 == 'CURRENT') {
+            if (!self::isWordPart($this->next_up(1, 7))) {
+                return WORD_CURRENT;
+            }
+        } elseif ($a7 == 'INCLUDE') {
+            if (!self::isWordPart($this->next_up(1, 7))) {
+                return WORD_INCLUDE;
+            }
+        } elseif ($a7 == 'EXCLUDE') {
+            if (!self::isWordPart($this->next_up(1, 7))) {
+                return WORD_EXCLUDE;
+            }
+        } elseif ($a7 == 'REQUIRE') {
+            if (!self::isWordPart($this->next_up(1, 7))) {
+                return WORD_REQUIRE;
+            }
+        } elseif ($a7 == 'RELEASE') {
+            if (!self::isWordPart($this->next_up(1, 7))) {
+                return WORD_CURRENT;
+            }
+        } elseif ($a8 == 'CURRENCY') {
+            if (!self::isWordPart($this->next_up(1, 8))) {
+                return WORD_CURRENCY;
+            }
+        } elseif ($a8 == 'TRANSACT') {
+            if (!self::isWordPart($this->next_up(1, 8))) {
+                return WORD_TRANSACT;
+            }
+        } elseif ($a8 == 'DESCRIBE') {
+            if (!self::isWordPart($this->next_up(1, 8))) {
+                return WORD_DESCRIBE;
+            }
+        } elseif ($a8 == 'CURRENCY') {
+            if (!self::isWordPart($this->next_up(1, 8))) {
+                return WORD_CURRENCY;
+            }
+        } elseif ($a8 == 'FILTRATE') {
+            if (!self::isWordPart($this->next_up(1, 8))) {
+                return WORD_FILTRATE;
+            }
+        } elseif ($a9 == 'ANONYMOUS') {
+            if (!self::isWordPart($this->next_up(1, 9))) {
+                return WORD_ANONYMOUS;
+            }
+        } elseif ($a10 == 'SUGGESTION') {
+            if (!self::isWordPart($this->next_up(1, 10))) {
+                return WORD_SUGGESTION;
+            }
+        } elseif ($a11 == 'TRANSACTION') {
+            if (!self::isWordPart($this->next_up(1, 11))) {
+                return WORD_TRANSACTION;
+            }
+        }
+
+        // Otherwise, restore initial index and return FALSE to indicate
+        // failure.
+        $this->index = $index_backup;
+        return FALSE;
+    }
+
     /// Compile a command list into byte code.
     ///
     /// $cmdstr - string with commands to parse and compile.

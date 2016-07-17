@@ -103,13 +103,18 @@ class Compiler {
 
     /// The same as next(), but returns all upper case letters. Use to simulate
     /// case insensitive parser.
-    private function next_up($skip = 1) {
-        return strtoupper($this->next($skip));
+    private function next_up($count = 1, $skip = 1) {
+        return strtoupper($this->next($count, $skip));
     }
 
     private function Compiler($cmdstr) {
         $this->cmdstr = $cmdstr;
         $this->index = 0;
+    }
+
+    // Test if particular character can be part of the word token.
+    private function isWordPart($char) {
+        return ctype_alpha($char[0]); // Test only first character.
     }
 
     /// Compile a command list into byte code.

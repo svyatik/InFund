@@ -304,6 +304,21 @@ class Compiler {
         return FALSE;
     }
 
+    /// Try to parse a string literal.
+    ///
+    /// SUCCESS: return the content of the string literal.
+    /// FAILURE: return FALSE.
+    private function next_string() {
+        if ($this->cur() != '"') {
+            return FALSE; // String literal starts with double-quote.
+        }
+        $this->next(); // Skip double-quote.
+
+        // TODO: unimplemented! scan string
+
+        return FALSE; // on error
+    }
+
     /// Compile a command list into byte code.
     ///
     /// $cmdstr - string with commands to parse and compile.

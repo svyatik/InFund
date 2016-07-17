@@ -113,7 +113,7 @@ class Compiler {
     }
 
     // Test if particular character can be part of the word token.
-    private function isWordPart($char) {
+    private static function isWordPart($char) {
         return ctype_alpha($char[0]); // Test only first character.
     }
 

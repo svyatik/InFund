@@ -395,6 +395,7 @@ class Interpreter {
     const CERR_OBJECT_NOT_FOUND     = 0x04;
     const CERR_OBJECT_AMBIGUOUS     = 0x05;
     const CERR_METHOD_UNIMPLEMENTED = 0x06;
+    const CERR_INVALID_STRING       = 0x07;
 
     var $parser;
 
@@ -531,14 +532,10 @@ class Interpreter {
             case WORD_FUND:
                 $id = $this->find_object_fund();
                 if ($id == NULL) {
-                    // Error - no such object found.
-                    $this->error_type = CERR_OBJECT_NOT_FOUND;
-                    $this->error_data = "";
+                    // Error occured.
                     return;
                 } elseif ($id == FALSE) {
-                    // Error - ambiguous object name.
-                    $this->error_type = CERR_OBJECT_AMBIGUOUS;
-                    $this->error_data = "";
+                    // Lookup error occured.
                     return;
                 } else {
                     $this->selected_fund = $id;
@@ -565,13 +562,17 @@ class Interpreter {
     ///
     /// Return:
     /// NULL  when code error occured.
-    /// FALSE when no objects was found
+    /// FALSE when no objects was found.
     /// ID    when object was found.
     private function find_object_fund($type) {
         $this->parser->skip_garbage();
         $tok = $this->parser->next_string();
         if ($tok == NULL) {
-            // TODO error
+            // Error - syntax error.
+            $this->error_type = CERR_INVALID_STRING;
+            $this->error_data = "";
+            return NULL;
+
         } elseif ($tok != FALSE) {
             // IF $tok == some string
             $fund_name = $tok; // Our token is a fund name string.

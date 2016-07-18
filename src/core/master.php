@@ -385,6 +385,47 @@ class Parse {
     }
 }
 
+/// Error that occurs while interpreting/executing code.
+class InterpretError extends Exception {
+
+    const MASTER_ERROR = 1;
+    const INTERP_ERROR = 2;
+
+    var $from;
+    var $type;
+    var $data;
+
+    public function errorMessage() {
+        $msg = "";
+        if ($this->from == MASTER_ERROR) {
+            $msg .= "Master";
+        } elseif ($this->from == INTERP_ERROR) {
+            $msg .= "Interpreter";
+        } else {
+            $msg .= "Unknown";
+        }
+
+        $msg .= " error, type number: " . $this->type;
+        $msg .= ";\n" . $this->data;
+
+        return $msg;
+    }
+
+    public function InterpretError($from, $type, $data) {
+        $this->from = $from;
+        $this->type = $type;
+        $this->data = $data;
+    }
+
+    public static function cerr($type, $data) {
+        throw new InterpretError(INTERP_ERROR, $type, $data);
+    }
+
+    public static function xerr($type, $data) {
+        throw new InterpretError(MASTER_ERROR, $type, $data);
+    }
+}
+
 /// Performs actual operatons in the data base.
 class Master {
 
@@ -434,11 +475,6 @@ class Interpreter {
 
     var $parser;
     var $master;
-
-    // Store error type and data when it occurs. In normal workflow equals
-    // 0 and NULL.
-    var $error_type;
-    var $error_data;
 
     /// Interpret given commands and execute them. This will possibly change
     /// the database or other internal data.
@@ -579,7 +615,7 @@ class Interpreter {
                     // Lookup error occured.
                     return;
                 } else {
-                    $this->selected_fund = $id;
+                    $this->master->select_fund($id);
                 }
                 break;
             case WORD_CURRENCY:

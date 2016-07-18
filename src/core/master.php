@@ -530,9 +530,20 @@ class Interpreter {
     /// client.
     ///
     /// RETURN: string to send to the client.
-    private function wrap_error() {
-        return '{ "status":"err", "type":"' . $this->error_type . '"'
-        . '"data":"' . $this->error_data . '" }';
+    private function wrap_error($e) {
+        $msg = '{ "status":"';
+        if ($e->from == InterpretError::INTERP_ERROR) {
+            $msg .= 'cerr';
+        } elseif ($e->from == InterpretError::MASTER_ERROR) {
+            $msg .= 'xerr';
+        } else {
+            // ERROR - this branch is an unreachable code.
+            $msg .= 'err';
+        }
+        $mgs .= '",\n"type":"' . $e->type . '",\n';
+        $msg .= '"data":"' . $e->data . '"}'
+
+        return $msg;
     }
 
     private function interpret_cmd($is_suggestion) {

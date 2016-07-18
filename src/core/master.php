@@ -368,15 +368,79 @@ class Parse {
 
 class Interpreter {
 
+    var $parser;
+
     /// Interpret given commands and execute them. This will possibly change
     /// the database or other internal data.
     ///
     /// $cmdstr - a command string to interpret.
-    public static function interpret($cmdstr) {
-        $parser = new Parser($cmdstr);
+    public function interpret($cmdstr) {
+        $this->parser = new Parser($cmdstr);
 
         while (true) {
             // TODO: unpimplemented!
+            $this->parser->skip_garbage();
+            $index_backup = $this->parser->index;
+
+            $val = $this->parser->next_word();
+            if ($val == WORD_SUGGEST) {
+                interpret_cmd(true);
+            } elseif ($val == NULL) {
+                // TODO return error
+                break;
+            } else {
+                $val = $this->parser->next_symbol();
+                if ($val == COMMA) {
+                    // TODO Error - trailing comma
+                    break;
+                } elseif ($val == SEMICOLON) {
+                    // End of command
+                    break;
+                } else {
+                    // Unexpected token
+                    // TODO
+                    break;
+                }
+            }
+        }
+    }
+
+    private function interpret_cmd($is_suggestion) {
+        $val = $this->parser->next_word();
+        // TODO
+        switch ($val) {
+            case WORD_SELECT:
+                break;
+            case WORD_ABOUT:
+                break;
+            case WORD_CREATE:
+                break;
+            case WORD_DROP:
+                break;
+            case WORD_REVIVE:
+                break;
+            case WORD_TRANSACT:
+                break;
+            case WORD_FROM:
+                break;
+            case WORD_TO:
+                break;
+            case WORD_DESCRIBE:
+                break;
+            case WORD_MOVE:
+                break;
+            case WORD_RENAME:
+                break;
+            case WORD_ALLOW:
+                break;
+            case WORD_SUGGEST:
+                break;
+            case WORD_CONVERT:
+                break;
+            case WORD_SAVE:
+                break;
+            case WORD_FILTRATE:
+                break;
         }
     }
 }

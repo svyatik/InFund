@@ -500,18 +500,12 @@ class Interpreter {
             } elseif ($val == FALSE) {
                 $val = $this->parser->next_symbol();
                 if ($val == COMMA) {
-                    // Trailing comma error.
-                    $this->error_type = CERR_TRAILING_COMMA;
-                    $this->error_data = "";
-                    return $this->wrap_error();
+                    InterpretError::cerr(CERR_TRAILING_COMMA);
                 } elseif ($val == SEMICOLON) {
                     // End of command
                     break;
                 } else {
-                    // Unexpected token error.
-                    $this->error_type = CERR_UNEXPECTED_TOKEN;
-                    $this->error_data = "";
-                    return $this->wrap_error();
+                    InterpretError::cerr(CERR_UNEXPECTED_TOKEN);
                 }
             } else {
                 interpret_cmd(false);

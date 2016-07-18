@@ -530,7 +530,7 @@ class Interpreter {
         $val = $this->parser->next_word();
         switch ($val) {
             case WORD_FUND:
-                $id = $this->find_object_fund();
+                $id = $this->find_object_fund(WORD_FUND);
                 if ($id == NULL) {
                     // Error occured.
                     return;
@@ -560,11 +560,13 @@ class Interpreter {
 
     /// Use for "SELECT" command.
     ///
+    /// $type - type of the object to look for.
+    ///
     /// Return:
     /// NULL  when code error occured.
     /// FALSE when no objects was found.
     /// ID    when object was found.
-    private function find_object_fund($type) {
+    private function find_object($type) {
         $this->parser->skip_garbage();
         $tok = $this->parser->next_string();
         if ($tok == NULL) {
@@ -575,11 +577,11 @@ class Interpreter {
 
         } elseif ($tok != FALSE) {
             // IF $tok == some string
-            $fund_name = $tok; // Our token is a fund name string.
-            return find_fund_by_name($fund_name);
+            $obj_name = $tok; // Our token is a object name string.
+            return find_object_by_name($obj_name, $type);
         } // else...
 
-        // Must be given fund ID number.
+        // Must be given object ID number.
         $tok = $this->parser->next_number();
         if ($tok == FALSE) { // If not a number...
             // Error - unexpected token.
@@ -587,31 +589,31 @@ class Interpreter {
             $this->error_data = "";
             return NULL;
         }
-        $fund_id = $tok;
+        $obj_id = $tok;
 
         // Check if object exists
-        $is_found = find_fund_by_id($fund_id);
+        $is_found = find_object_by_id($obj_id);
         if (!$is_found) {
             return FALSE;
         }
 
-        return $fund_id;
+        return $obj_id;
     }
 
-    /// Look for fund with given name.
+    /// Look for object with given name.
     ///
     /// Return:
     /// FALSE when several objects with given name was found.
     /// NULL  when no objects was found
     /// ID    when object was found.
-    private function find_fund_by_name($fund_str) {
+    private function find_object_by_name($obj_str, $type) {
         return 0; // TODO
     }
 
     /// Check if this object exists.
     ///
     /// RETURN true if found and false otherwise.
-    private function find_fund_by_id($id) {
+    private function find_fund_by_id($id, $type) {
         return FALSE; // TODO
     }
 }

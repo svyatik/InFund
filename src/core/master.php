@@ -586,7 +586,7 @@ class Interpreter {
     private function expect_no_suggestion($s) {
         if ($s) {
             // Error - cannot be suggested.
-            InterpretError::cerr(CERR_INVALID_SUGGESTION, "");
+            InterpretError::cerr(CERR_INVALID_SUGGESTION);
         }
     }
 
@@ -630,7 +630,7 @@ class Interpreter {
         // Check if string is valid
         if ($tok == NULL) {
             // Error - syntax error.
-            InterpretError::cerr(CERR_INVALID_STRING, "");
+            InterpretError::cerr(CERR_INVALID_STRING);
         } elseif ($tok != FALSE) {
             // IF $tok == some string
             $obj_name = $tok; // Our token is a object name string.
@@ -641,14 +641,14 @@ class Interpreter {
         $tok = $this->parser->next_number();
         if ($tok == FALSE) { // If not a number...
             // Error - unexpected token.
-            InterpretError::cerr(CERR_UNEXPECTED_TOKEN, "");
+            InterpretError::cerr(CERR_UNEXPECTED_TOKEN);
         }
         $obj_id = $tok;
 
         // Check if object exists
         $is_found = find_object_by_id($obj_id);
         if (!$is_found) {
-            InterpretError::cerr(CERR_OBJECT_NOT_FOUND, "");
+            InterpretError::cerr(CERR_OBJECT_NOT_FOUND);
         }
 
         return $obj_id;

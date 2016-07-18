@@ -541,16 +541,9 @@ class Interpreter {
         // TODO
         switch ($val) {
             case WORD_SELECT:
-                if (expect_no_suggestion($is_suggestion)) {
-                    return;
-                }
 
+                expect_no_suggestion($is_suggestion);
                 interpret_cmd_select();
-
-                if ($this->error_type != CERR_NONE) {
-                    return; // Error occured
-                }
-
                 break;
 
             case WORD_ABOUT:
@@ -590,16 +583,11 @@ class Interpreter {
 
     // Expect no suggestion.
     // Otherwise, create invalid suggestion error.
-    // Returns true on error and false otherwise.
     private function expect_no_suggestion($s) {
         if ($s) {
             // Error - cannot be suggested.
-            $this->error_type = CERR_INVALID_SUGGESTION;
-            $this->error_data = "";
-            return TRUE;
+            InterpretError::cerr(CERR_INVALID_SUGGESTION, "");
         }
-
-        return FALSE;
     }
 
     private function interpret_cmd_select() {

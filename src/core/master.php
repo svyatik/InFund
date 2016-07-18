@@ -399,24 +399,10 @@ class Interpreter {
 
     var $parser;
 
-    // `SELECT` fields.
-    var $selected_fund;
-    var $selected_currency;
-    var $selected_transaction;
-    var $selected_user;
-    var $selected_filter;
-    var $selected_suggestion;
-    var $selected_history;
-
     // Store error type and data when it occurs. In normal workflow equals
     // 0 and NULL.
     var $error_type;
     var $error_data;
-
-    // Store result string of previous operation. If any, then it equals
-    // 0 and "" (empty string).
-    var $result_type;
-    var $result_data;
 
     /// Interpret given commands and execute them. This will possibly change
     /// the database or other internal data.
@@ -471,9 +457,9 @@ class Interpreter {
 
     /// Wrap the result into the message that can be sand back to the
     /// client.
-    private function wrap_result() {
-        return '{ "status":"ok", "type":"' . $this->result_type . '"'
-        . '"data":"' . $this->result_data . '" }';
+    private function wrap_result($result_type, $result_data) {
+        return '{ "status":"ok", "type":"' . $result_type . '"'
+        . '"data":"' . $result_data . '" }';
     }
 
     private function interpret_cmd($is_suggestion) {

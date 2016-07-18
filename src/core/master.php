@@ -430,6 +430,7 @@ class InterpretError extends Exception {
 class Master {
 
     const RESULT_NONE       = 0x00;
+    const RESULTABOUT_FUND  = 0x01;
 
     // Internal and Selected language variables
     var $s_fund;
@@ -487,6 +488,11 @@ class Master {
 
     public function select_suggestion($id) {
         $this->s_suggestion = $id;
+    }
+
+    public function about_fund() {
+        $this->result_type = RESULT_ABOUT_FUND;
+        // TODO
     }
 
     public function get_json_result() {

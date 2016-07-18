@@ -622,9 +622,7 @@ class Interpreter {
     /// $type - type of the object to look for.
     ///
     /// Return:
-    /// NULL  when code error occured.
-    /// FALSE when no objects was found.
-    /// ID    when object was found.
+    /// ID when object was found.
     private function find_object($type) {
         $this->parser->skip_garbage();
         $tok = $this->parser->next_string();
@@ -632,9 +630,7 @@ class Interpreter {
         // Check if string is valid
         if ($tok == NULL) {
             // Error - syntax error.
-            $this->error_type = CERR_INVALID_STRING;
-            $this->error_data = "";
-            return NULL;
+            InterpretError::cerr(CERR_INVALID_STRING, "");
         } elseif ($tok != FALSE) {
             // IF $tok == some string
             $obj_name = $tok; // Our token is a object name string.
@@ -645,16 +641,14 @@ class Interpreter {
         $tok = $this->parser->next_number();
         if ($tok == FALSE) { // If not a number...
             // Error - unexpected token.
-            $this->error_type = CERR_UNEXPECTED_TOKEN;
-            $this->error_data = "";
-            return NULL;
+            InterpretError::cerr(CERR_UNEXPECTED_TOKEN, "");
         }
         $obj_id = $tok;
 
         // Check if object exists
         $is_found = find_object_by_id($obj_id);
         if (!$is_found) {
-            return FALSE;
+            InterpretError::cerr(CERR_OBJECT_NOT_FOUND, "");
         }
 
         return $obj_id;

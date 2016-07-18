@@ -488,7 +488,7 @@ class Interpreter {
                     $this->error_data = "";
                     return;
                 }
-                $err = interpret_cmd_select();
+                interpret_cmd_select();
                 if ($this->error_type != CERR_NONE) {
                     return; // Error occured
                 }

@@ -383,6 +383,8 @@ class Interpreter {
     /// the database or other internal data.
     ///
     /// $cmdstr - a command string to interpret.
+    ///
+    /// RETURN reply to sand back to the client.
     public function interpret($cmdstr) {
         $this->parser = new Parser($cmdstr);
 

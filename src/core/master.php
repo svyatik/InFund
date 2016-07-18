@@ -382,6 +382,9 @@ class Interpreter {
     /// Store error msg when it occurs. In normal workflow equals NULL.
     var $error;
 
+    /// Store result string of previous operation. If any, then it equals "".
+    var $result;
+
     /// Interpret given commands and execute them. This will possibly change
     /// the database or other internal data.
     ///
@@ -419,6 +422,20 @@ class Interpreter {
                 interpret_cmd(false);
             }
         }
+    }
+
+    /// Wrap the error into the message that can be send back to the
+    /// client.
+    ///
+    /// RETURN: string to send to the client.
+    private function wrap_error() {
+        return '{ "status":"err", "data":"' . $this->error . '" }';
+    }
+
+    /// Wrap the result into the message that can be sand back to the
+    /// client.
+    private function wrap_result() {
+        return '{ "status":"ok", "data":"' . $this->result . '" }';
     }
 
     private function interpret_cmd($is_suggestion) {

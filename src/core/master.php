@@ -379,6 +379,9 @@ class Interpreter {
     var $selected_suggestion;
     var $selected_history;
 
+    /// Store error msg when it occurs. In normal workflow equals NULL.
+    var $error;
+
     /// Interpret given commands and execute them. This will possibly change
     /// the database or other internal data.
     ///

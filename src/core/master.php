@@ -429,6 +429,8 @@ class InterpretError extends Exception {
 /// Performs actual operatons in the data base.
 class Master {
 
+    const RESULT_NONE       = 0x00;
+
     // Internal and Selected language variables
     var $s_fund;
     var $s_currency;
@@ -442,7 +444,7 @@ class Master {
     var $s_to_type;
     var $s_to;
 
-    // Saved result dfata type actual data.
+    // Saved result data type actual data.
     var $result_type;
     var $result;
 
@@ -458,6 +460,9 @@ class Master {
         $this->s_from           = NULL;
         $this->s_to_type        = NULL;
         $this->s_to             = NULL;
+
+        $this->result_type      = RESULT_NONE;
+        $this->result           = "";
     }
 
     public function select_fund($id) {

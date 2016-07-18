@@ -632,17 +632,35 @@ class Interpreter {
                 break;
 
             case WORD_CURRENCY:
+
+                $id = $this->find_object_fund(WORD_CURRENCY);
+                $this->master->select_currency($id);
                 break;
+
             case WORD_TRANSACTION:
+
+                $id = $this->find_object_fund(WORD_TRANSACTION);
+                $this->master->select_transaction($id);
                 break;
+
             case WORD_USER:
+
+                $id = $this->find_object_fund(WORD_USER);
+                $this->master->select_user($id);
                 break;
+
             case WORD_FILTER:
+
+                $id = $this->find_object_fund(WORD_FILTER);
+                $this->master->select_filter($id);
                 break;
+
             case WORD_SUGGESTION:
+
+                $id = $this->find_object_fund(WORD_SUGGESTION);
+                $this->master->select_suggestion($id);
                 break;
-            case WORD_HISTORY:
-                break;
+
             default:
                 // TODO error
         }

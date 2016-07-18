@@ -482,10 +482,7 @@ class Interpreter {
         // TODO
         switch ($val) {
             case WORD_SELECT:
-                if ($is_suggestion) {
-                    // Error - cannot be suggested.
-                    $this->error_type = CERR_INVALID_SUGGESTION;
-                    $this->error_data = "";
+                if (expect_no_suggestion($is_suggestion)) {
                     return;
                 }
 
@@ -530,6 +527,20 @@ class Interpreter {
             default:
                 // TODO ERROR
         }
+    }
+
+    // Expect no suggestion.
+    // Otherwise, create invalid suggestion error.
+    // Returns true on error and false otherwise.
+    private function expect_no_suggestion($s) {
+        if ($s) {
+            // Error - cannot be suggested.
+            $this->error_type = CERR_INVALID_SUGGESTION;
+            $this->error_data = "";
+            return TRUE;
+        }
+
+        return FALSE;
     }
 
     private function interpret_cmd_select() {

@@ -460,6 +460,26 @@ class Master {
         $this->s_fund = $id;
     }
 
+    public function select_currency($id) {
+        $this->s_currency = $id;
+    }
+
+    public function select_transaction($id) {
+        $this->s_transaction = $id;
+    }
+
+    public function select_user($id) {
+        $this->s_user = $id;
+    }
+
+    public function select_filter($id) {
+        $this->s_filter = $id;
+    }
+
+    public function select_suggestion($id) {
+        $this->s_suggestion = $id;
+    }
+
     public function get_json_result() {
         // TODO
     }

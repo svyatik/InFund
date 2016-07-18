@@ -357,6 +357,25 @@ class Parse {
         return FALSE;
     }
 
+    /// Try parsing next number.
+    ///
+    /// SUCCESS: return string with parser number.
+    /// FAILURE: return FALSE.
+    public function next_number() {
+        $str = ""; // Store resulting number here.
+        $cur = $this->cur();
+        while (strpbrk($cur, "0123456789") != FALSE) {
+            $str = $str . $cur;
+            $cur = $this->next();
+        }
+
+        if ($str == "") {
+            return FALSE; // Couldn't parse a number - other token type found.
+        }
+
+        return $str;
+    }
+
     /// Skip all spaces and other unimportant garbage.
     public function skip_garbage() {
         $char = $this->cur();

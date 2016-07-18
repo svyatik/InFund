@@ -375,6 +375,7 @@ class Interpreter {
     const CERR_INVALID_SUGGESTION   = 0x03;
     const CERR_OBJECT_NOT_FOUND     = 0x04;
     const CERR_OBJECT_AMBIGUOUS     = 0x05;
+    const CERR_METHOD_UNIMPLEMENTED = 0x06;
 
     var $parser;
 

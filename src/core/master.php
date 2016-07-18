@@ -397,7 +397,7 @@ class Interpreter {
             } elseif ($val == NULL) {
                 // TODO return error
                 break;
-            } else {
+            } elseif ($val == FALSE) {
                 $val = $this->parser->next_symbol();
                 if ($val == COMMA) {
                     // TODO Error - trailing comma
@@ -410,6 +410,9 @@ class Interpreter {
                     // TODO
                     break;
                 }
+            } else {
+                // Coding error. This code must be unreachable!
+                // TODO
             }
         }
     }

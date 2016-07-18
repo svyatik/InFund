@@ -442,6 +442,10 @@ class Master {
     var $s_to_type;
     var $s_to;
 
+    // Saved result dfata type actual data.
+    var $result_type;
+    var $result;
+
     public function Master() {
         $this->s_fund           = NULL;
         $this->s_currency       = NULL;
@@ -481,7 +485,8 @@ class Master {
     }
 
     public function get_json_result() {
-        // TODO
+        return '{"status":"ok", "type":"' . $this->result_type . '",\n'
+        . '"data":"' . $this->result . '"}';
     }
 }
 

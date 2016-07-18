@@ -411,17 +411,17 @@ class InterpretError extends Exception {
         return $msg;
     }
 
-    public function InterpretError($from, $type, $data) {
+    public function InterpretError($from, $type, $data = "") {
         $this->from = $from;
         $this->type = $type;
         $this->data = $data;
     }
 
-    public static function cerr($type, $data) {
+    public static function cerr($type, $data = "") {
         throw new InterpretError(INTERP_ERROR, $type, $data);
     }
 
-    public static function xerr($type, $data) {
+    public static function xerr($type, $data = "") {
         throw new InterpretError(MASTER_ERROR, $type, $data);
     }
 }

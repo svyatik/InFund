@@ -370,6 +370,15 @@ class Interpreter {
 
     var $parser;
 
+    // `SELECT` fields.
+    var $selected_fund;
+    var $selected_currency;
+    var $selected_transaction;
+    var $selected_user;
+    var $selected_filter;
+    var $selected_suggestion;
+    var $selected_history;
+
     /// Interpret given commands and execute them. This will possibly change
     /// the database or other internal data.
     ///

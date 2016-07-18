@@ -417,7 +417,7 @@ class Interpreter {
     }
 
     private function interpret_cmd($is_suggestion) {
-
+        $this->parser->skip_garbage();
         $val = $this->parser->next_word();
         // TODO
         switch ($val) {
@@ -464,6 +464,7 @@ class Interpreter {
     }
 
     private function interpret_cmd_select() {
+        $this->parser->skip_garbage();
         $val = $this->parser->next_word();
         switch ($val) {
             case WORD_FUND:

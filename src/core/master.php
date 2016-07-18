@@ -564,8 +564,8 @@ class Interpreter {
     /// Use for "SELECT" command.
     ///
     /// Return:
-    /// FALSE when several objects with given name was found.
-    /// NULL  when no objects was found
+    /// NULL  when code error occured.
+    /// FALSE when no objects was found
     /// ID    when object was found.
     private function find_object_fund($type) {
         $this->parser->skip_garbage();
@@ -578,7 +578,23 @@ class Interpreter {
             return find_fund_by_name($fund_name);
         } // else...
 
-        // TODO unimplemented
+        // Must be given fund ID number.
+        $tok = $this->parser->next_number();
+        if ($tok == FALSE) { // If not a number...
+            // Error - unexpected token.
+            $this->error_type = CERR_UNEXPECTED_TOKEN;
+            $this->error_data = "";
+            return NULL;
+        }
+        $fund_id = $tok;
+
+        // Check if object exists
+        $is_found = find_fund_by_id($fund_id);
+        if (!$is_found) {
+            return FALSE;
+        }
+
+        return $fund_id;
     }
 
     /// Look for fund with given name.
@@ -589,5 +605,12 @@ class Interpreter {
     /// ID    when object was found.
     private function find_fund_by_name($fund_str) {
         return 0; // TODO
+    }
+
+    /// Check if this object exists.
+    ///
+    /// RETURN true if found and false otherwise.
+    private function find_fund_by_id($id) {
+        return FALSE; // TODO
     }
 }

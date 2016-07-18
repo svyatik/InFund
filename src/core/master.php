@@ -368,6 +368,14 @@ class Parse {
 
 class Interpreter {
 
+    // CODE ERROR LIST:
+    const CERR_NONE                 = 0x00; // No error.
+    const CERR_TRAILING_COMMA       = 0x01;
+    const CERR_UNEXPECTED_TOKEN     = 0x02;
+    const CERR_INVALID_SUGGESTION   = 0x03;
+    const CERR_OBJECT_NOT_FOUND     = 0x04;
+    const CERR_OBJECT_AMBIGUOUS     = 0x05;
+
     var $parser;
 
     // `SELECT` fields.
@@ -379,13 +387,13 @@ class Interpreter {
     var $selected_suggestion;
     var $selected_history;
 
-    /// Store error type and data when it occurs. In normal workflow equals
-    /// 0 and NULL.
+    // Store error type and data when it occurs. In normal workflow equals
+    // 0 and NULL.
     var $error_type;
     var $error_data;
 
-    /// Store result string of previous operation. If any, then it equals
-    /// 0 and "" (empty string).
+    // Store result string of previous operation. If any, then it equals
+    // 0 and "" (empty string).
     var $result_type;
     var $result_data;
 
@@ -412,15 +420,18 @@ class Interpreter {
             } elseif ($val == FALSE) {
                 $val = $this->parser->next_symbol();
                 if ($val == COMMA) {
-                    // TODO Error - trailing comma
-                    break;
+                    // Trailing comma error.
+                    $this->error_type = CERR_TRAILING_COMMA;
+                    $this->error_data = "";
+                    return $this->wrap_error();
                 } elseif ($val == SEMICOLON) {
                     // End of command
                     break;
                 } else {
-                    // Unexpected token
-                    // TODO
-                    break;
+                    // Unexpected token error.
+                    $this->error_type = CERR_UNEXPECTED_TOKEN;
+                    $this->error_data = "";
+                    return $this->wrap_error();
                 }
             } else {
                 interpret_cmd(false);
@@ -451,8 +462,10 @@ class Interpreter {
         switch ($val) {
             case WORD_SELECT:
                 if ($is_suggestion) {
-                    // TODO error - cannot be suggested.
-                    break;
+                    // Error - cannot be suggested.
+                    $this->error_type = CERR_INVALID_SUGGESTION;
+                    $this->error_data = "";
+                    return;
                 }
                 interpret_cmd_select();
                 break;
@@ -498,9 +511,15 @@ class Interpreter {
             case WORD_FUND:
                 $id = $this->find_object_fund();
                 if ($id == NULL) {
-                    // TODO error - no such object found.
+                    // Error - no such object found.
+                    $this->error_type = CERR_OBJECT_NOT_FOUND;
+                    $this->error_data = "";
+                    return;
                 } elseif ($id == FALSE) {
-                    // TODO error - ambiguous object name.
+                    // Error - ambiguous object name.
+                    $this->error_type = CERR_OBJECT_AMBIGUOUS;
+                    $this->error_data = "";
+                    return;
                 } else {
                     $this->selected_fund = $id;
                 }

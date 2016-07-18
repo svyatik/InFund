@@ -578,7 +578,11 @@ class Interpreter {
                 break;
 
             case WORD_ABOUT:
+
+                expect_no_suggestion($is_suggestion);
+                // TODO
                 break;
+
             case WORD_CREATE:
                 break;
             case WORD_DROP:

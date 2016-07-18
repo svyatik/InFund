@@ -595,17 +595,11 @@ class Interpreter {
         $val = $this->parser->next_word();
         switch ($val) {
             case WORD_FUND:
+
                 $id = $this->find_object_fund(WORD_FUND);
-                if ($id == NULL) {
-                    // Error occured.
-                    return;
-                } elseif ($id == FALSE) {
-                    // Lookup error occured.
-                    return;
-                } else {
-                    $this->master->select_fund($id);
-                }
+                $this->master->select_fund($id);
                 break;
+
             case WORD_CURRENCY:
                 break;
             case WORD_TRANSACTION:

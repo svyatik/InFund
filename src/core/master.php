@@ -433,7 +433,8 @@ class Interpreter {
     ///
     /// RETURN: string to send to the client.
     private function wrap_error() {
-        return '{ "status":"err", "data":"' . $this->error . '" }';
+        return '{ "status":"err", "type":"' . $this->error_type . '"'
+        . '"data":"' . $this->error_data . '" }';
     }
 
     /// Wrap the result into the message that can be sand back to the

@@ -385,6 +385,41 @@ class Parse {
     }
 }
 
+/// Performs actual operatons in the data base.
+class Master {
+
+    // Internal and Selected language variables
+    $s_fund;
+    $s_currency;
+    $s_transaction;
+    $s_user;
+    $s_filter;
+    $s_suggestion;
+    $s_history;
+    $s_from_type;
+    $s_from;
+    $s_to_type;
+    $s_to;
+
+    public function Master() {
+        $this->s_fund           = NULL;
+        $this->s_currency       = NULL;
+        $this->s_transaction    = NULL;
+        $this->s_user           = NULL;
+        $this->s_filter         = NULL;
+        $this->s_suggestion     = NULL;
+        $this->s_history        = NULL;
+        $this->s_from_type      = NULL;
+        $this->s_from           = NULL;
+        $this->s_to_type        = NULL;
+        $this->s_to             = NULL;
+    }
+
+    public function select_fund($id) {
+        $this->s_fund = $id;
+    }
+}
+
 class Interpreter {
 
     // CODE ERROR LIST:
@@ -398,6 +433,7 @@ class Interpreter {
     const CERR_INVALID_STRING       = 0x07;
 
     var $parser;
+    var $master;
 
     // Store error type and data when it occurs. In normal workflow equals
     // 0 and NULL.
@@ -412,6 +448,7 @@ class Interpreter {
     /// RETURN reply to send back to the client.
     public function interpret($cmdstr) {
         $this->parser = new Parser($cmdstr);
+        $this->master = new Master();
 
         while (true) {
             // TODO: unpimplemented!

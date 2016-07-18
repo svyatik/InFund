@@ -440,7 +440,8 @@ class Interpreter {
     /// Wrap the result into the message that can be sand back to the
     /// client.
     private function wrap_result() {
-        return '{ "status":"ok", "data":"' . $this->result . '" }';
+        return '{ "status":"ok", "type":"' . $this->result_type . '"'
+        . '"data":"' . $this->result_data . '" }';
     }
 
     private function interpret_cmd($is_suggestion) {

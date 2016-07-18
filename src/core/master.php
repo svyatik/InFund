@@ -468,6 +468,14 @@ class Interpreter {
         $val = $this->parser->next_word();
         switch ($val) {
             case WORD_FUND:
+                $id = $this->find_object_fund();
+                if ($id == NULL) {
+                    // TODO error - no such object found.
+                } elseif ($id == FALSE) {
+                    // TODO error - ambiguous object name.
+                } else {
+                    $this->selected_fund = $id;
+                }
                 break;
             case WORD_CURRENCY:
                 break;
@@ -484,5 +492,35 @@ class Interpreter {
             default:
                 // TODO error
         }
+    }
+
+    /// Use for "SELECT" command.
+    ///
+    /// Return:
+    /// FALSE when several objects with given name was found.
+    /// NULL  when no objects was found
+    /// ID    when object was found.
+    private function find_object_fund($type) {
+        $this->parser->skip_garbage();
+        $tok = $this->parser->next_string();
+        if ($tok == NULL) {
+            // TODO error
+        } elseif ($tok != FALSE) {
+            // IF $tok == some string
+            $fund_name = $tok; // Our token is a fund name string.
+            return find_fund_by_name($fund_name);
+        } // else...
+
+        // TODO unimplemented
+    }
+
+    /// Look for fund with given name.
+    ///
+    /// Return:
+    /// FALSE when several objects with given name was found.
+    /// NULL  when no objects was found
+    /// ID    when object was found.
+    private function find_fund_by_name($fund_str) {
+        return 0; // TODO
     }
 }

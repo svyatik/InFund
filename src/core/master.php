@@ -449,6 +449,9 @@ class Master {
     var $result_type;
     var $result;
 
+    // Current history state is stored here.
+    var $cache;
+
     public function Master() {
         $this->s_fund           = NULL;
         $this->s_currency       = NULL;
@@ -464,6 +467,19 @@ class Master {
 
         $this->result_type      = RESULT_NONE;
         $this->result           = "";
+
+        $err = try_load_cache();
+        if ($err) {
+            load_cache_from_history();
+        }
+    }
+
+    private function try_load_cache() {
+        // TODO
+    }
+
+    private function load_cache_from_history() {
+        // TODO
     }
 
     public function select_fund($id) {

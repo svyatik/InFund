@@ -587,12 +587,13 @@ class Interpreter {
     private function find_object($type) {
         $this->parser->skip_garbage();
         $tok = $this->parser->next_string();
+
+        // Check if string is valid
         if ($tok == NULL) {
             // Error - syntax error.
             $this->error_type = CERR_INVALID_STRING;
             $this->error_data = "";
             return NULL;
-
         } elseif ($tok != FALSE) {
             // IF $tok == some string
             $obj_name = $tok; // Our token is a object name string.

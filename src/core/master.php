@@ -411,13 +411,13 @@ class Interpreter {
                     break;
                 }
             } else {
-                // Coding error. This code must be unreachable!
-                // TODO
+                interpret_cmd(false);
             }
         }
     }
 
     private function interpret_cmd($is_suggestion) {
+
         $val = $this->parser->next_word();
         // TODO
         switch ($val) {

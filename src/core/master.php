@@ -410,6 +410,11 @@ class Interpreter {
         // TODO
         switch ($val) {
             case WORD_SELECT:
+                if ($is_suggestion) {
+                    // TODO error - cannot be suggested.
+                    break;
+                }
+                interpret_cmd_select();
                 break;
             case WORD_ABOUT:
                 break;
@@ -441,6 +446,30 @@ class Interpreter {
                 break;
             case WORD_FILTRATE:
                 break;
+            default:
+                // TODO ERROR
+        }
+    }
+
+    private function interpret_cmd_select() {
+        $val = $this->parser->next_word();
+        switch ($val) {
+            case WORD_FUND:
+                break;
+            case WORD_CURRENCY:
+                break;
+            case WORD_TRANSACTION:
+                break;
+            case WORD_USER:
+                break;
+            case WORD_FILTER:
+                break;
+            case WORD_SUGGESTION:
+                break;
+            case WORD_HISTORY:
+                break;
+            default:
+                // TODO error
         }
     }
 }

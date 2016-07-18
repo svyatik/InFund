@@ -488,11 +488,15 @@ class Interpreter {
                     $this->error_data = "";
                     return;
                 }
+
                 interpret_cmd_select();
+
                 if ($this->error_type != CERR_NONE) {
                     return; // Error occured
                 }
+
                 break;
+
             case WORD_ABOUT:
                 break;
             case WORD_CREATE:

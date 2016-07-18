@@ -430,17 +430,17 @@ class InterpretError extends Exception {
 class Master {
 
     // Internal and Selected language variables
-    $s_fund;
-    $s_currency;
-    $s_transaction;
-    $s_user;
-    $s_filter;
-    $s_suggestion;
-    $s_history;
-    $s_from_type;
-    $s_from;
-    $s_to_type;
-    $s_to;
+    var $s_fund;
+    var $s_currency;
+    var $s_transaction;
+    var $s_user;
+    var $s_filter;
+    var $s_suggestion;
+    var $s_history;
+    var $s_from_type;
+    var $s_from;
+    var $s_to_type;
+    var $s_to;
 
     public function Master() {
         $this->s_fund           = NULL;

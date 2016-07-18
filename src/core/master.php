@@ -535,13 +535,6 @@ class Interpreter {
         . '"data":"' . $this->error_data . '" }';
     }
 
-    /// Wrap the result into the message that can be sand back to the
-    /// client.
-    private function wrap_result($result_type, $result_data) {
-        return '{ "status":"ok", "type":"' . $result_type . '"'
-        . '"data":"' . $result_data . '" }';
-    }
-
     private function interpret_cmd($is_suggestion) {
         $this->parser->skip_garbage();
         $val = $this->parser->next_word();

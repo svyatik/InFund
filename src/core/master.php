@@ -459,6 +459,10 @@ class Master {
     public function select_fund($id) {
         $this->s_fund = $id;
     }
+
+    public function get_json_result() {
+        // TODO
+    }
 }
 
 class Interpreter {
@@ -483,6 +487,15 @@ class Interpreter {
     ///
     /// RETURN reply to send back to the client.
     public function interpret($cmdstr) {
+        try {
+            $this->_interpret($cmdstr);
+            echo $master->get_json_result();
+        } catch (InterpretError $e) {
+            echo wrap_error($e);
+        }
+    }
+
+    private function _interpret($cmdstr) {
         $this->parser = new Parser($cmdstr);
         $this->master = new Master();
 

@@ -662,7 +662,7 @@ class Interpreter {
                 break;
 
             default:
-                // TODO error
+                InterpretError::cerr(CERR_UNEXPECTED_TOKEN);
         }
     }
 

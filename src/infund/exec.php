@@ -67,6 +67,10 @@ class HistoryCache {
     // Last ID that was allocated for some object type:
     private $max_fund_id;
 
+    public function __construct() {
+        throw new Exception("Not implemented yet!");
+    }
+
     public function max_fund_id() {
         return $this->max_fund_id;
     }

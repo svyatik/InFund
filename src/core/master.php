@@ -633,7 +633,17 @@ class HistoryFile {
     }
 
     private function calc_entry_checksum() {
-        // TODO
+        $body_size = $this->current_entry_header()->bsize;
+        $size = 12 + $body_size;
+
+        $entry_str = fread($this->file, $size);
+
+        $checksum = 0;
+        for ($i = 0; $i < $size; $i++) {
+            checksum += ord($entry_str[$i]);
+        }
+
+        return $checksum;
     }
 }
 

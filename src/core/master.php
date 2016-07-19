@@ -599,8 +599,10 @@ class Master {
         }
     }
 
+    // Try load cache file. Return TRUE on success and FALSE on error.
     private function try_load_cache() {
-        // TODO
+        $this->cache = new HistoryCache();
+        return !$this->cache->cache_loaded;
     }
 
     private function load_cache_from_history() {

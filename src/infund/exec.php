@@ -34,4 +34,8 @@ class HistoryIO {
         }
     }
 
+    function __destruct() {
+        fclose($file);
+    }
+
 }

@@ -45,6 +45,7 @@ class HistoryIO {
 
 }
 
+/// Any execution error.
 class ExecException extends Exception {
     // TODO
 }

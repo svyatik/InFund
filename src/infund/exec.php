@@ -51,6 +51,9 @@ class HistoryCache {
     // Last ID that was allocated for some object type:
     private $max_fund_id;
 
+    public function max_fund_id() {
+        return $this->max_fund_id;
+    }
 }
 
 class Executor {

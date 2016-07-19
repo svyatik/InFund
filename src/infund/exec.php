@@ -11,6 +11,15 @@ class Cmds {
 
     const CREATE_FUND               = 0x0001;
 
+    public static function get_name($cmd) {
+        switch ($cmd) {
+            case CREATE_FUND:
+                return "CREATE_FUND";
+            default:
+                return NULL;
+        }
+    }
+
 }
 
 /// This calss performs History File input/output.

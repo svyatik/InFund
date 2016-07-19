@@ -631,6 +631,10 @@ class HistoryFile {
     public function goto_next_entry() {
         // TODO
     }
+
+    private function calc_entry_checksum() {
+        // TODO
+    }
 }
 
 /// Performs actual operatons in the data base.

@@ -38,4 +38,9 @@ class HistoryIO {
         fclose($file);
     }
 
+    // Append new command to the history.
+    public function push_cmd($cmd, $data) {
+        throw new Exception("Not implemented yet!");
+    }
+
 }

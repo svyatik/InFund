@@ -52,7 +52,14 @@ class HistoryIO {
         // Move to the end of the file.
         fseek($this->file, 0, SEEK_END);
 
-        throw new Exception("Not implemented yet!");
+        $entry = create_history_entry($cmd, $data);
+
+        // Write entry to the file.
+        fwrite($this->file, pack($entry->cmd , "v"));
+        fwrite($this->file, pack($entry->time, "V"));
+        fwrite($this->file, pack($entry->size, "V"));
+        fwrite($this->file,      $entry->data      );
+        fwrite($this->file, "\n");
     }
 
     private function create_history_entry($cmd, $data) {
@@ -69,11 +76,6 @@ class HistoryIO {
             $data = "{}"; // Empty object
         } else {
             $data = json_encode($data);
-        }
-
-        $cmd = Cmds::get_name($cmd);
-        if ($cmd == NULL) {
-            throw new Exception("Command name is not defined!");
         }
 
         // Find out the size of the entry.

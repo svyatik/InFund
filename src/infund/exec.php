@@ -45,6 +45,14 @@ class HistoryIO {
 
 }
 
+/// Holds data about current data system state.
+class HistoryCache {
+
+    // Last ID that was allocated for some object type:
+    private $max_fund_id;
+
+}
+
 class Executor {
 
     public static function exec($cmd, $data) {

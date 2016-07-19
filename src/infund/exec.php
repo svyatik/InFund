@@ -40,7 +40,26 @@ class HistoryIO {
 
     // Append new command to the history.
     public function push_cmd($cmd, $data) {
+        // Move to the end of the file.
+        fseek($this->file, 0, SEEK_END);
+
         throw new Exception("Not implemented yet!");
+    }
+
+    private function create_history_entry_header($cmd, $data) {
+        // Header in file (bytes):
+        // 0..1 - command id.
+        // 2..5 - timestamp & entry id (works until 2038. Then goes negative).
+        // 6..9 - entry size, starting from the first byte of header.
+        //        Used to skip to the next entry.
+
+        throw new Exception("Not implemented yet!");
+        // TODO find the size of the entry.
+        return (object) array(
+            'cmd'    => $cmd,
+            'time'   => date_timestamp_get(date_create()),
+            'size'   => $size
+        );
     }
 
 }

@@ -44,3 +44,16 @@ class HistoryIO {
     }
 
 }
+
+class Executor {
+
+    public static function exec($cmd, $data) {
+        switch ($cmd) {
+            case Cmds::C_CREATE_FUND:
+                // TODO
+                break;
+            default:
+                throw new Exception("Not implemented yet!");
+        }
+    }
+}

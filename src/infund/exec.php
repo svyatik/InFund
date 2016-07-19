@@ -19,4 +19,19 @@ class HistoryIO {
     /// The history file location.
     const FILE_LOCATION = "data/infund/history";
 
+    private $file;
+
+    public function __construct() {
+        $file_exists = file_exists(FILE_LOCATION));
+
+        // Open/create file for new operations.
+        $this->file = fopen(FILE_LOCATION, "r+b");
+
+        // Check if history file already exists.
+        if (!$file_exists) {
+            // If it does not exist, add header to the file.
+            $this->init_new_file();
+        }
+    }
+
 }

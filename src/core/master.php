@@ -593,6 +593,11 @@ class HistoryFile {
     }
 }
 
+/// Used to iterate through HistoryFile.
+class HistoryIterator {
+    // TODO
+}
+
 /// Performs actual operatons in the data base.
 class Master {
 

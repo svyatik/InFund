@@ -598,6 +598,9 @@ class HistoryFile {
         $type = fread($this->file, 2);
         $csum = fread($this->file, 2);
 
+        // Restore initial position.
+        fseek($this->file, -8, SEEK_CUR);
+
         return (object) array(
             'skip' => unpack("L", $skip),
             'type' => unpack("v", $type),

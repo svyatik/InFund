@@ -64,8 +64,6 @@ class HistoryIO {
         // ... JSON body ...
         // end of the entry - new line byte.
 
-        throw new Exception("Not implemented yet!");
-
         // Convert data to JSON
         if ($data == NULL) {
             $data = "{}"; // Empty object

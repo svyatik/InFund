@@ -55,7 +55,14 @@ class HistoryCache {
 
 class Executor {
 
+    private $cache;
+
     public static function exec($cmd, $data) {
+        $self = new Executor();
+        $self->private_exec($cmd, $data);
+    }
+
+    private function private_exec($cmd, $data) {
         switch ($cmd) {
             case Cmds::CREATE_FUND:
                 self::cmd_create_fund($data);
@@ -65,7 +72,7 @@ class Executor {
         }
     }
 
-    private static function cmd_create_fund($data) {
+    private function cmd_create_fund($data) {
         throw new Exception("Not implemented yet!");
     }
 }

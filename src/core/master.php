@@ -444,6 +444,32 @@ class HistoryCache {
     var $drop_filter_arr;
     var $drop_user_arr;
     var $drop_fund_arr;
+
+    var $cache_loaded;
+
+    public function HistoryCache() {
+        $this->cache_loaded = FALSE;
+
+        $cache_exists = file_exists(FILEPATH);
+        if ($cache_exists == FALSE) {
+            return;
+        }
+
+        $file = fopen(FILEPATH, "r");
+        $data = fread($file, filesize(FILEPATH));
+
+        $json = json_decode($data);
+
+        if ($json == FALSE || $json == NULL) {
+            // Cache may be invalid.
+            // Delete invalid cache.
+            unlink(FILEPATH);
+            return;
+        }
+
+        // TODO load data from JSON
+    }
+
 }
 
 /// I/O abstractions to history file.

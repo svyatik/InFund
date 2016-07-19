@@ -429,6 +429,8 @@ class InterpretError extends Exception {
 /// History cache that holds current history state.
 class HistoryCache {
 
+    const FILEPATH = "infund_cache";
+
     var $db_ver;
     var $fund_arr;
     var $user_arr;

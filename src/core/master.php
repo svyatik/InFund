@@ -591,6 +591,21 @@ class HistoryFile {
     function __destruct() {
         fclose($this->file);
     }
+
+    /// Get current entry header.
+    public function current_entry_header() {
+        // TODO
+    }
+
+    /// Get current entry body.
+    public function current_entry_body() {
+        // TODO
+    }
+
+    /// Move to next entry.
+    public function goto_next_entry() {
+        // TODO
+    }
 }
 
 /// Performs actual operatons in the data base.

@@ -429,7 +429,27 @@ class InterpretError extends Exception {
 /// I/O abstractions to history file.
 class HistoryFile {
 
+    const FILEPATH = "infund_history";
+    const VERSION = 0x00000010;
 
+    var $file;
+
+    public function HistoryFile() {
+        if (!file_exists(FILEPATH)) {
+            $this->file = fopen(FILEPATH, "r+b");
+
+            $byte0 = VERSION >> (8 * 0);
+            $byte1 = VERSION >> (8 * 1);
+            $byte2 = VERSION >> (8 * 2);
+            $byte3 = VERSION >> (8 * 3);
+
+            $data = chr($byte0) . chr($byte1) . chr($byte2) . chr($byte3);
+
+            fwrite($this->file, $data);
+        } else {
+            $this->file = fopen(FILEPATH, "r+b");
+        }
+    }
 }
 
 /// Performs actual operatons in the data base.

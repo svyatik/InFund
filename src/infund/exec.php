@@ -50,10 +50,14 @@ class Executor {
     public static function exec($cmd, $data) {
         switch ($cmd) {
             case Cmds::CREATE_FUND:
-                // TODO
+                self::cmd_create_fund($data);
                 break;
             default:
                 throw new Exception("Not implemented yet!");
         }
+    }
+
+    private static function cmd_create_fund($data) {
+        throw new Exception("Not implemented yet!");
     }
 }

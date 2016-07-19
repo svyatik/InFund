@@ -444,6 +444,7 @@ class HistoryFile {
     const HS_DROP_FILTER            = 0x0013;
     const HS_DROP_SUGGESTION        = 0x0014;
 
+    // Opened history file. Open in c-tor. Close in d-tor.
     var $file;
 
     public function HistoryFile() {

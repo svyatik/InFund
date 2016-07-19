@@ -74,6 +74,7 @@ class HistoryCache {
 class Executor {
 
     private $cache;
+    private $history;
 
     private function __construct() {
         $this->cache = new HistoryCache();

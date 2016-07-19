@@ -426,6 +426,11 @@ class InterpretError extends Exception {
     }
 }
 
+/// History cache that holds current history state.
+class HistoryCache {
+    // TODO
+}
+
 /// I/O abstractions to history file.
 class HistoryFile {
 

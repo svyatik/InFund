@@ -510,6 +510,30 @@ class HistoryCache {
         fclose($file);
     }
 
+
+    public function add_fund($data) {
+        // TODO
+    }
+
+    public function add_user($data) {
+        // TODO
+    }
+
+    public function add_filter($data) {
+        // TODO
+    }
+
+    public function add_currency($data) {
+        // TODO
+    }
+
+    public function add_suggestion($data) {
+        // TODO
+    }
+
+    public function add_transaction($data) {
+        // TODO
+    }
 }
 
 /// I/O abstractions to history file.

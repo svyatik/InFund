@@ -587,6 +587,10 @@ class HistoryFile {
             $this->file = fopen(FILEPATH, "r+b");
         }
     }
+
+    function __destruct() {
+        fclose($this->file);
+    }
 }
 
 /// Performs actual operatons in the data base.

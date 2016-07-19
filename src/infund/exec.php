@@ -60,6 +60,10 @@ class Executor {
 
     private $cache;
 
+    private function __construct() {
+        $this->cache = new HistoryCache();
+    }
+
     public static function exec($cmd, $data) {
         $self = new Executor();
         $self->private_exec($cmd, $data);

@@ -813,7 +813,7 @@ class Master {
 
                 case HS_TRANSACT:
 
-                    // TODO
+                    $this->cache->add_transaction($body);
                     break;
 
                 case HS_MOVE_FUND:

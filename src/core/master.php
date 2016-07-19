@@ -640,6 +640,12 @@ class Master {
         return '{"status":"ok", "type":"' . $this->result_type . '",\n'
         . '"data":"' . $this->result . '"}';
     }
+
+    /// Save the changes to actual history.
+    /// Call this only when whole command group successfully finished.
+    public function save() {
+        // TODO
+    }
 }
 
 class Interpreter {

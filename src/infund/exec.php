@@ -13,25 +13,6 @@ class Cmds {
 
 }
 
-/// History exception.
-class HistoryException extends Exception {
-
-    // Exception types:
-    const ET_UNKNOWN_COMMAND        = 0x01;
-
-    private $type;
-
-    /// Create exception through the specail functions.
-    private function __construct($type) {
-        $this->type = type;
-    }
-
-    public static function unknown_command() {
-        return new HistoryException(ET_UNKNOWN_COMMAND);
-    }
-
-}
-
 /// This calss performs History File input/output.
 class HistoryIO {
 

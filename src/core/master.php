@@ -457,6 +457,7 @@ class HistoryCache {
 
         $file = fopen(FILEPATH, "r");
         $data = fread($file, filesize(FILEPATH));
+        fclose($file);
 
         $json = json_decode($data);
 

@@ -594,7 +594,15 @@ class HistoryFile {
 
     /// Get current entry header.
     public function current_entry_header() {
-        // TODO
+        $skip = fread($this->file, 4);
+        $type = fread($this->file, 2);
+        $csum = fread($this->file, 2);
+
+        return (object) array(
+            'skip' => unpack("L", $skip),
+            'type' => unpack("v", $type),
+            'csum' => unpack("v", $csum),
+        );
     }
 
     /// Get current entry body.

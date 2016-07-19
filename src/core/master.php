@@ -484,6 +484,11 @@ class HistoryCache {
         $this->cache_loaded = TRUE;
     }
 
+    /// Save cache into the cache file.
+    public function save() {
+        // TODO
+    }
+
 }
 
 /// I/O abstractions to history file.

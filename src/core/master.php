@@ -426,6 +426,20 @@ class InterpretError extends Exception {
     }
 }
 
+/// Used to define and create data structures for history elements.
+class HistoryElements {
+
+    public static function new_fund() {
+        return (object) array(
+            'id'            => 0,
+            'name'          => "",
+            'description'   => "",
+            'parent_id'     => 0, // Parent fund
+            'currency_id'   => 0,
+        );
+    }
+}
+
 /// History cache that holds current history state.
 class HistoryCache {
 

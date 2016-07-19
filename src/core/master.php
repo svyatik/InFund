@@ -597,20 +597,34 @@ class HistoryFile {
         $skip = fread($this->file, 4);
         $type = fread($this->file, 2);
         $csum = fread($this->file, 2);
+        $bsize = fread($this->file, 4);
 
         // Restore initial position.
-        fseek($this->file, -8, SEEK_CUR);
+        fseek($this->file, -12, SEEK_CUR);
 
         return (object) array(
             'skip' => unpack("L", $skip),
             'type' => unpack("v", $type),
             'csum' => unpack("v", $csum),
+            'bsize' => unpack("L", $skip),
         );
     }
 
     /// Get current entry body.
     public function current_entry_body() {
-        // TODO
+        $body_size = $this->current_entry_header()->bsize;
+
+        // Body is located with offset of 12 bytes.
+        fseek($this->file, 12, SEEK_CUR);
+
+        // Read JSON string.
+        $str = fread($this->file, $body_size);
+
+        // Restore initial position.
+        fseek($this->file, -12 - $body_size);
+
+        // Decode and return JSON.
+        return json_decode($str);
     }
 
     /// Move to next entry.

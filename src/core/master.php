@@ -563,10 +563,10 @@ class HistoryFile {
     const HS_SUGGEST_RENAME_USER        = 0x0034;
     const HS_SUGGEST_RENAME_CURRENCY    = 0x0035;
     const HS_SUGGEST_RENAME_FILTER      = 0x0036;
-    const HS_SUGGEST_DESCRIBE_FUND      = 0x0020;
-    const HS_SUGGEST_DESCRIBE_USER      = 0x0021;
-    const HS_SUGGEST_DESCRIBE_CURRENCY  = 0x0022;
-    const HS_SUGGEST_DESCRIBE_FILTER    = 0x0023;
+    const HS_SUGGEST_DESCRIBE_FUND      = 0x0037;
+    const HS_SUGGEST_DESCRIBE_USER      = 0x0038;
+    const HS_SUGGEST_DESCRIBE_CURRENCY  = 0x0039;
+    const HS_SUGGEST_DESCRIBE_FILTER    = 0x003A;
 
     // Opened history file. Open in c-tor. Close in d-tor.
     var $file;

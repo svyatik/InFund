@@ -65,6 +65,10 @@ class HistoryCache {
     public function max_fund_id() {
         return $this->max_fund_id;
     }
+
+    public function max_fund_id_increment() {
+        $this->max_fund_id += 1;
+    }
 }
 
 class Executor {
@@ -95,11 +99,11 @@ class Executor {
             throw new UnsupportedDataError();
         }
 
-        // Get last fund id.
-        $last_id = $this->cache->max_fund_id();
+        // Get last fund id and increment it.
+        $last_id = $this->cache->max_fund_id_increment();
 
-        // Create new unique fund id.
-        $new_id = $last_id + 1;
+        // Get new unique fund id.
+        $new_id = $this->cache->max_fund_id();
 
         throw new Exception("Not implemented yet!");
     }

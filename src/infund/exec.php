@@ -81,7 +81,7 @@ class Executor {
 
     private function cmd_create_fund($data) {
         // Get last fund id.
-        $last_id = $this->cache->mux_fund_id();
+        $last_id = $this->cache->max_fund_id();
 
         // Create new unique fund id.
         $new_id = $last_id + 1;

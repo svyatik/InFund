@@ -46,19 +46,39 @@ class HistoryIO {
         throw new Exception("Not implemented yet!");
     }
 
-    private function create_history_entry_header($cmd, $data) {
+    private function create_history_entry($cmd, $data) {
         // Header in file (bytes):
         // 0..1 - command id.
         // 2..5 - timestamp & entry id (works until 2038. Then goes negative).
         // 6..9 - entry size, starting from the first byte of header.
         //        Used to skip to the next entry.
+        // ... JSON body ...
+        // end of the entry - new line byte.
 
         throw new Exception("Not implemented yet!");
-        // TODO find the size of the entry.
+
+        // Convert data to JSON
+        if ($data == NULL) {
+            $data = "{}"; // Empty object
+        } else {
+            $data = json_encode($data);
+        }
+
+        $cmd = Cmds::get_name($cmd);
+        if ($cmd == NULL) {
+            throw new Exception("Command name is not defined!");
+        }
+
+        // Find out the size of the entry.
+        $header_size = 10;
+        $newline_size = 1;
+        $size = $header_size + strlen($name) + strlen($data) + $newline_size;
+
         return (object) array(
             'cmd'    => $cmd,
             'time'   => date_timestamp_get(date_create()),
-            'size'   => $size
+            'size'   => $size,
+            'data'   => $data,
         );
     }
 

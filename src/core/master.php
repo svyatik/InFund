@@ -707,7 +707,19 @@ class Master {
     }
 
     private function load_cache_from_history() {
-        // TODO
+        $history = new HistoryFile();
+        while (TRUE) {
+            $err = $history->goto_next_entry();
+            if ($err) {
+                break;
+            }
+
+            $type = $history->current_entry_header()->type;
+            switch ($type) {
+                // TODO
+            }
+        }
+
     }
 
     public function select_fund($id) {

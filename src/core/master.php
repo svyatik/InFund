@@ -628,8 +628,13 @@ class HistoryFile {
     }
 
     /// Move to next entry.
+    /// Return FALSE on success and TRUE on error.
     public function goto_next_entry() {
-        // TODO
+        $skip = $this->current_entry_header()->skip;
+        fseek($this->file, $skip, SEEK_CUR);
+
+        $checksum = $this->calc_entry_checksum();
+        return $this->current_entry_header()->csum != $checksum;
     }
 
     private function calc_entry_checksum() {

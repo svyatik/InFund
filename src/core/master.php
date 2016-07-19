@@ -428,7 +428,20 @@ class InterpretError extends Exception {
 
 /// History cache that holds current history state.
 class HistoryCache {
-    // TODO
+
+    var $db_ver;
+    var $fund_arr;
+    var $user_arr;
+    var $filter_arr;
+    var $currency_arr;
+    var $suggestion_arr;
+    var $transaction_arr;
+    var $drop_transaction_arr;
+    var $drop_suggestion_arr;
+    var $drop_currency_arr;
+    var $drop_filter_arr;
+    var $drop_user_arr;
+    var $drop_fund_arr;
 }
 
 /// I/O abstractions to history file.

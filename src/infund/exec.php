@@ -45,6 +45,14 @@ class HistoryIO {
 
 }
 
+class ExecException extends Exception {
+    // TODO
+}
+
+class UnsupportedDataError extends ExecException {
+    // TODO
+}
+
 /// Holds data about current data system state.
 class HistoryCache {
 

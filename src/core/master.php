@@ -694,9 +694,9 @@ class Master {
         $this->result_type      = RESULT_NONE;
         $this->result           = "";
 
-        $err = try_load_cache();
+        $err = $this->try_load_cache();
         if ($err) {
-            load_cache_from_history();
+            $this->load_cache_from_history();
         }
     }
 

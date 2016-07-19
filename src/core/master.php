@@ -549,7 +549,7 @@ class HistoryFile {
     const HS_SUGGEST_CREATE_FUND        = 0x0026;
     const HS_SUGGEST_CREATE_USER        = 0x0027;
     const HS_SUGGEST_CREATE_CURRENCY    = 0x0028;
-    const HS_SUGGSET_DROP_FUND          = 0x0029;
+    const HS_SUGGEST_DROP_FUND          = 0x0029;
     const HS_SUGGEST_DROP_USER          = 0x002A;
     const HS_SUGGEST_DROP_CURRENCY      = 0x002B;
     const HS_SUGGEST_REVIVE_FUND        = 0x002C;
@@ -716,7 +716,249 @@ class Master {
 
             $type = $history->current_entry_header()->type;
             switch ($type) {
-                // TODO
+                case HS_CREATE_FUND:
+
+                    // TODO
+                    break;
+
+                case HS_CREATE_USER:
+
+                    // TODO
+                    break;
+
+                case HS_CREATE_CURRENCY:
+
+                    // TODO
+                    break;
+
+                case HS_SAVE_FILTER:
+
+                    // TODO
+                    break;
+
+                case HS_CREATE_SUGGESTION:
+
+                    // TODO
+                    break;
+
+                case HS_DROP_FUND:
+
+                    // TODO
+                    break;
+
+                case HS_DROP_USER:
+
+                    // TODO
+                    break;
+
+                case HS_DROP_CURRENCY:
+
+                    // TODO
+                    break;
+
+                case HS_DROP_FILTER:
+
+                    // TODO
+                    break;
+
+                case HS_DROP_SUGGESTION:
+
+                    // TODO
+                    break;
+
+                case HS_REVIVE_FUND:
+
+                    // TODO
+                    break;
+
+                case HS_REVIVE_CURRENCY:
+
+                    // TODO
+                    break;
+
+                case HS_REVIVE_USER:
+
+                    // TODO
+                    break;
+
+                case HS_REVIVE_FILTER:
+
+                    // TODO
+                    break;
+
+                case HS_TRANSACT:
+
+                    // TODO
+                    break;
+
+                case HS_MOVE_FUND:
+
+                    // TODO
+                    break;
+
+                case HS_RENAME_FUND:
+
+                    // TODO
+                    break;
+
+                case HS_RENAME_USER:
+
+                    // TODO
+                    break;
+
+                case HS_RENAME_CURRENCY:
+
+                    // TODO
+                    break;
+
+                case HS_RENAME_FILTER:
+
+                    // TODO
+                    break;
+
+                case HS_RENAME_SUGGESTION:
+
+                    // TODO
+                    break;
+
+                case HS_DESCRIBE_FUND:
+
+                    // TODO
+                    break;
+
+                case HS_DESCRIBE_USER:
+
+                    // TODO
+                    break;
+
+                case HS_DESCRIBE_CURRENCY:
+
+                    // TODO
+                    break;
+
+                case HS_DESCRIBE_FILTER:
+
+                    // TODO
+                    break;
+
+                case HS_ALLOW:
+
+                    // TODO
+                    break;
+
+                case HS_SUGGEST_TRANSACT:
+
+                    // TODO
+                    break;
+
+                case HS_SUGGEST_CREATE_FUND:
+
+                    // TODO
+                    break;
+
+                case HS_SUGGEST_CREATE_USER:
+
+                    // TODO
+                    break;
+
+                case HS_SUGGEST_CREATE_CURRENCY:
+
+                    // TODO
+                    break;
+
+                case HS_SUGGEST_DROP_FUND:
+
+                    // TODO
+                    break;
+
+                case HS_SUGGEST_DROP_USER:
+
+                    // TODO
+                    break;
+
+                case HS_SUGGEST_DROP_CURRENCY:
+
+                    // TODO
+                    break;
+
+                case HS_SUGGEST_REVIVE_FUND:
+
+                    // TODO
+                    break;
+
+                case HS_SUGGEST_REVIVE_CURRENCY:
+
+                    // TODO
+                    break;
+
+                case HS_SUGGEST_REVIVE_USER:
+
+                    // TODO
+                    break;
+
+                case HS_SUGGEST_REVIVE_FILTER:
+
+                    // TODO
+                    break;
+
+                case HS_SUGGEST_DROP_FILTER:
+
+                    // TODO
+                    break;
+
+                case HS_SUGGEST_TRANSACT:
+
+                    // TODO
+                    break;
+
+                case HS_SUGGEST_MOVE_FUND:
+
+                    // TODO
+                    break;
+
+                case HS_SUGGEST_RENAME_FUND:
+
+                    // TODO
+                    break;
+
+                case HS_SUGGEST_RENAME_USER:
+
+                    // TODO
+                    break;
+
+                case HS_SUGGEST_RENAME_CURRENCY:
+
+                    // TODO
+                    break;
+
+                case HS_SUGGEST_RENAME_FILTER:
+
+                    // TODO
+                    break;
+
+                case HS_SUGGEST_DESCRIBE_FUND:
+
+                    // TODO
+                    break;
+
+                case HS_SUGGEST_DESCRIBE_USER:
+
+                    // TODO
+                    break;
+
+                case HS_SUGGEST_DESCRIBE_FILTER:
+
+                    // TODO
+                    break;
+
+                case HS_SUGGEST_DESCRIBE_CURRENCY:
+
+                    // TODO
+                    break;
+
+                default:
+
+                    // TODO
             }
         }
 

@@ -486,7 +486,27 @@ class HistoryCache {
 
     /// Save cache into the cache file.
     public function save() {
-        // TODO
+        $file = fopen(FILEPATH, "w");
+
+        $json_arr = array(
+            "db_ver"                => $this->db_ver,
+            "fund_arr"              => $this->fund_arr,
+            "user_arr"              => $this->user_arr,
+            "filter_arr"            => $this->filter_arr,
+            "currency_arr"          => $this->currency_arr,
+            "suggestion_arr"        => $this->suggestion_arr,
+            "transaction_arr"       => $this->transaction_arr,
+            "drop_fund_arr"         => $this->drop_fund_arr,
+            "drop_user_arr"         => $this->drop_user_arr,
+            "drop_filter_arr"       => $this->drop_filter_arr,
+            "drop_currency_arr"     => $this->drop_currency_arr,
+            "drop_suggestion_arr"   => $this->drop_suggestion_arr,
+            "drop_transaction_arr"  => $this->drop_transaction_arr,
+        );
+
+        $json_txt = json_encode($json_arr);
+        fwrite($file, $json_txt);
+        fclose($file);
     }
 
 }

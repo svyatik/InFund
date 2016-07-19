@@ -88,6 +88,10 @@ class Executor {
     }
 
     private function cmd_create_fund($data) {
+        if ($data != NULL) {
+            throw new UnsupportedDataError();
+        }
+
         // Get last fund id.
         $last_id = $this->cache->max_fund_id();
 

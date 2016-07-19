@@ -107,6 +107,10 @@ class Executor {
         // Get new unique fund id.
         $new_id = $this->cache->max_fund_id();
 
-        throw new Exception("Not implemented yet!");
+        // Wrap id into object.
+        $data = (object) array('id' => $new_id);
+
+        // Save command and data to the history.
+        $this->history->push_cmd(Cmds::CREATE_FUND, $data);
     }
 }

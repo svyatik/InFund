@@ -432,6 +432,18 @@ class HistoryFile {
     const FILEPATH = "infund_history";
     const VERSION = 0x00000010;
 
+    // Operations in history
+    const HS_CREATE_FUND            = 0x0008;
+    const HS_CREATE_USER            = 0x0009;
+    const HS_CREATE_CURRENCY        = 0x000A;
+    const HS_SAVE_FILTER            = 0x000B;
+    const HS_CREATE_SUGGESTION      = 0x000D;
+    const HS_DROP_FUND              = 0x0010;
+    const HS_DROP_USER              = 0x0011;
+    const HS_DROP_CURRENCY          = 0x0012;
+    const HS_DROP_FILTER            = 0x0013;
+    const HS_DROP_SUGGESTION        = 0x0014;
+
     var $file;
 
     public function HistoryFile() {

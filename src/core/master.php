@@ -467,7 +467,21 @@ class HistoryCache {
             return;
         }
 
-        // TODO load data from JSON
+        $this->db_ver               = $json->db_ver;
+        $this->fund_arr             = $json->db_ver;
+        $this->user_arr             = $json->db_ver;
+        $this->filter_arr           = $json->db_ver;
+        $this->currency_arr         = $json->db_ver;
+        $this->suggestion_arr       = $json->db_ver;
+        $this->transaction_arr      = $json->db_ver;
+        $this->drop_fund_arr        = $json->db_ver;
+        $this->drop_user_arr        = $json->db_ver;
+        $this->drop_filter_arr      = $json->db_ver;
+        $this->drop_currency_arr    = $json->db_ver;
+        $this->drop_suggestion_arr  = $json->db_ver;
+        $this->drop_transaction_arr = $json->db_ver;
+
+        $this->cache_loaded = TRUE;
     }
 
 }

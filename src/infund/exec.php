@@ -78,6 +78,7 @@ class Executor {
 
     private function __construct() {
         $this->cache = new HistoryCache();
+        $this->history = new HistoryIO();
     }
 
     public static function exec($cmd, $data) {

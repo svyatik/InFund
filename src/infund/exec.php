@@ -12,3 +12,11 @@ class Cmds {
     const C_CREATE_FUND             = 0x0001;
 
 }
+
+/// This calss performs History File input/output.
+class HistoryIO {
+
+    /// The history file location.
+    const FILE_LOCATION = "data/infund/history";
+
+}

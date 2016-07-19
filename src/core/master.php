@@ -739,30 +739,31 @@ class Master {
             }
 
             $type = $history->current_entry_header()->type;
+            $body = $history->current_entry_body();
             switch ($type) {
                 case HS_CREATE_FUND:
 
-                    // TODO
+                    $this->cache->add_fund($body);
                     break;
 
                 case HS_CREATE_USER:
 
-                    // TODO
+                    $this->cache->add_user($body);
                     break;
 
                 case HS_CREATE_CURRENCY:
 
-                    // TODO
+                    $this->cache->add_currency($body);
                     break;
 
                 case HS_SAVE_FILTER:
 
-                    // TODO
+                    $this->cache->add_filter($body);
                     break;
 
                 case HS_CREATE_SUGGESTION:
 
-                    // TODO
+                    $this->cache->add_suggestion($body);
                     break;
 
                 case HS_DROP_FUND:

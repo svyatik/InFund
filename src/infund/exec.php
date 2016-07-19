@@ -49,6 +49,8 @@ class ExecException extends Exception {
     // TODO
 }
 
+/// Raise when data passed to the executor is not supported for the
+/// given command.
 class UnsupportedDataError extends ExecException {
     // TODO
 }

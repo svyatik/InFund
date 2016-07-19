@@ -9,7 +9,7 @@ This file contains the executor of the command code.
 /// Cmds stands for Commands.
 class Cmds {
 
-    const C_CREATE_FUND             = 0x0001;
+    const CREATE_FUND               = 0x0001;
 
 }
 
@@ -49,7 +49,7 @@ class Executor {
 
     public static function exec($cmd, $data) {
         switch ($cmd) {
-            case Cmds::C_CREATE_FUND:
+            case Cmds::CREATE_FUND:
                 // TODO
                 break;
             default:

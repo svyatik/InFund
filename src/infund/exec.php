@@ -56,6 +56,11 @@ class UnsupportedDataError extends ExecException {
     // TODO
 }
 
+/// Raise when executor tried to execute command, but it is not defined.
+class UnknownCommandError extends ExecException {
+    // TODO
+}
+
 /// Holds data about current data system state.
 class HistoryCache {
 
@@ -92,7 +97,7 @@ class Executor {
                 self::cmd_create_fund($data);
                 break;
             default:
-                throw new Exception("Not implemented yet!");
+                throw new UnknownCommandError();
         }
     }
 

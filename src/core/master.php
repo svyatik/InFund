@@ -426,6 +426,12 @@ class InterpretError extends Exception {
     }
 }
 
+/// I/O abstractions to history file.
+class HistoryFile {
+
+
+}
+
 /// Performs actual operatons in the data base.
 class Master {
 

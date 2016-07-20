@@ -109,6 +109,7 @@ class User {
     public function __construct($id, $history) {
         $this->id       = $id;
         // FIXME load data about user from the history.
+        throw new Exception("Not implemented yet!");
     }
 
     /// Get access right for particular fund.

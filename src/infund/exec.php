@@ -138,6 +138,7 @@ class HistoryCache {
     public function max_fund_id_increment() {
         $this->max_fund_id += 1;
     }
+
 }
 
 class Executor {

@@ -54,26 +54,28 @@ class HistoryIO {
     }
 
     // Append new command to the history.
-    public function push_cmd($cmd, $data) {
+    public function push_cmd($cmd, $user, $data) {
         // Move to the end of the file.
         fseek($this->file, 0, SEEK_END);
 
-        $entry = create_history_entry($cmd, $data);
+        $entry = create_history_entry($cmd, $user, $data);
 
         // Write entry to the file.
         fwrite($this->file, pack($entry->cmd , "v"));
         fwrite($this->file, pack($entry->time, "V"));
         fwrite($this->file, pack($entry->size, "V"));
+        fwrite($this->file, pack($entry->user, "V"));
         fwrite($this->file,      $entry->data      );
         fwrite($this->file, "\n");
     }
 
-    private function create_history_entry($cmd, $data) {
+    private function create_history_entry($cmd, $user, $data) {
         // Header in file (bytes):
         // 0..1 - command id.
         // 2..5 - timestamp & entry id (works until 2038. Then goes negative).
         // 6..9 - entry size, starting from the first byte of header.
         //        Used to skip to the next entry.
+        // 10..13 - User ID, who requested the operation.
         // ... JSON body ...
         // end of the entry - new line byte.
 
@@ -93,6 +95,7 @@ class HistoryIO {
             'cmd'    => $cmd,
             'time'   => date_timestamp_get(date_create()),
             'size'   => $size,
+            'user'   => $user,
             'data'   => $data,
         );
     }

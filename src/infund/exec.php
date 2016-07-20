@@ -184,4 +184,19 @@ class Executor {
     public static function exec_hisory($cache) {
         // TODO
     }
+
+    private function exec_group_($cmds, $user) {
+        $count = cmds.count();
+        for ($i = 0; $i < $count; $i++) {
+            $cmd = $cmds[$i]->cmd;
+
+            switch($cmd) {
+                case Cmds::CREATE_FUND:
+                    // TODO
+                    break;
+                default:
+                    throw new UnknownCommandError();
+            }
+        }
+    }
 }

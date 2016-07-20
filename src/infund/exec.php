@@ -150,6 +150,10 @@ class HistoryIO {
             $this->max_fund_id = 0;
         }
 
+        public function __clone() {
+            $max_fund_id = clone $max_fund_id;
+        }
+
         public function max_fund_id() {
             return $this->max_fund_id;
         }
@@ -173,9 +177,11 @@ class HistoryIO {
 
     // TODO make history cache internal HistoryIO class.
     private $cache;
+    private $cache_backup;
 
     public function __construct() {
-        $this->$cache = new HistoryCache();
+        $this->cache = new HistoryCache();
+        $this->cache_backup = clone $this->cache;
 
         $file_exists = file_exists(FILE_LOCATION));
 

@@ -52,6 +52,13 @@ class HistoryIO {
         }
     }
 
+    private function init_new_file() {
+        // Add text, format identificator.
+        fwrite($this->file, "INFUND HISTORY\n");
+        // Add format version.
+        fwrite($this->file, pack(0x00000100, "V"));
+    }
+
     function __destruct() {
         fclose($file);
     }

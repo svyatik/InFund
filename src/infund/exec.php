@@ -170,4 +170,14 @@ class Executor {
         $this->cache = $cache;
         $this->history = $history;
     }
+
+    /// Execute command group for user request.
+    public static function exec_group($cmds, $user) {
+        // TODO
+    }
+
+    /// Execute history and form the cache.
+    public static function exec_hisory() {
+        // TODO
+    }
 }

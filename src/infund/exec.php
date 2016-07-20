@@ -154,16 +154,6 @@ class HistoryCache {
         $this->max_fund_id += 1;
     }
 
-    // Update cache as if this command was called.
-    public function cmd_create_fund($data) {
-        // Change the cache.
-        $this->max_fund_id_increment();
-
-        return (object) array(
-            'id' => $this->max_fund_id;
-        );
-    }
-
 }
 
 class Executor {
@@ -176,30 +166,8 @@ class Executor {
         $this->history = new HistoryIO();
     }
 
-    public static function exec($cmd, $user, $data) {
-        $self = new Executor();
-        $self->private_exec($cmd, $user, $data);
-    }
-
-    private function private_exec($cmd, $user, $data) {
-        switch ($cmd) {
-            case Cmds::CREATE_FUND:
-                self::cmd_create_fund($user, $data);
-                break;
-            default:
-                throw new UnknownCommandError();
-        }
-    }
-
-    private function cmd_create_fund($user, $data) {
-        if ($data != NULL) {
-            throw new UnsupportedDataError();
-        }
-
-        // Tell cache to execute the command.
-        $data = $this->cache->cmd_create_fund($user, $data);
-
-        // Save command and data to the history.
-        $this->history->push_cmd(Cmds::CREATE_FUND, $user, $data);
+    private function __construct($cache, $history) {
+        $this->cache = $cache;
+        $this->history = $history;
     }
 }

@@ -137,8 +137,19 @@ class HistoryCache {
 
     public function __construct($history) {
         $this->max_fund_id = 0;
+        $this->load();
+    }
+
+    // Launch to load data from history or cache file.
+    private function load() {
         Executor::exec_history($this);
-        // TODO save and load from file.
+        // TODO add cache file support.
+    }
+
+    // Discard any changes. Warning: if changes were applied to history too,
+    // revert history first.
+    public function discard_changes() {
+        $this->load();
     }
 
     public function max_fund_id() {

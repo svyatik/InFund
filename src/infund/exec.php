@@ -182,7 +182,7 @@ class Executor {
     /// Execute history and form the cache.
     /// Given cache will be updated to the newest history.
     public static function exec_hisory($cache) {
-        // TODO
+        throw new Exception("Not implemented yet!");
     }
 
     private function exec_group_($cmds, $user) {

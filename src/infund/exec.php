@@ -291,6 +291,11 @@ class HistoryCache {
         // TODO currently there is no cache file to save into.
     }
 
+    /// Generate fund hierarchy.
+    public function fund_hierarchy() {
+        throw new Exception("Not implemented yet.");
+    }
+
 }
 
 /// Executes commands and save changes to cache and history.

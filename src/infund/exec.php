@@ -11,6 +11,20 @@ class Cmds {
 
     const CREATE_FUND               = 0x0001;
 
+    class CreateFundData {
+
+        public $parent_fund_id;
+
+        // Filled manually:
+        public $creator_user_id;
+        public $this_fund_id;
+
+        public function __construct($parent_fund_id) {
+            $this->parent_fund_id = parent_fund_id;
+        }
+
+    }
+
 }
 
 /// Use history filter to filtrate some particular entries from the whole

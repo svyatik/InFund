@@ -123,6 +123,11 @@ class HistoryIO {
         ftruncate($this->file, $this->byte_index_backup);
     }
 
+    public function save_changes() {
+        fseek($this->file, 0, SEEK_END);
+        $this->byte_index_backup = ftell($this->file);
+    }
+
 }
 
 /// Any execution error.

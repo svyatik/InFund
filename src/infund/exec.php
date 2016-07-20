@@ -135,6 +135,7 @@ class HistoryCache {
     public function __construct($history) {
         $this->max_fund_id = 0;
         $history->fill_history_cache($this);
+        // TODO save and load from file.
     }
 
     public function max_fund_id() {

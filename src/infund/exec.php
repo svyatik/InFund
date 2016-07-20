@@ -147,22 +147,22 @@ class Executor {
         $this->history = new HistoryIO();
     }
 
-    public static function exec($cmd, $data) {
+    public static function exec($cmd, $user, $data) {
         $self = new Executor();
-        $self->private_exec($cmd, $data);
+        $self->private_exec($cmd, $user, $data);
     }
 
-    private function private_exec($cmd, $data) {
+    private function private_exec($cmd, $user, $data) {
         switch ($cmd) {
             case Cmds::CREATE_FUND:
-                self::cmd_create_fund($data);
+                self::cmd_create_fund($user, $data);
                 break;
             default:
                 throw new UnknownCommandError();
         }
     }
 
-    private function cmd_create_fund($data) {
+    private function cmd_create_fund($user, $data) {
         if ($data != NULL) {
             throw new UnsupportedDataError();
         }
@@ -177,6 +177,6 @@ class Executor {
         $data = (object) array('id' => $new_id);
 
         // Save command and data to the history.
-        $this->history->push_cmd(Cmds::CREATE_FUND, $data);
+        $this->history->push_cmd(Cmds::CREATE_FUND, $user, $data);
     }
 }

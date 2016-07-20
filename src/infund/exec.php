@@ -43,6 +43,11 @@ class User {
     /// Access rights array for each fund, where it is not 'none'.
     private $rights;
 
+    public function __construct($id, $rights) {
+        $this->id       = $id;
+        $this->rights   = $rights;
+    }
+
     /// Get access right for particular fund.
     public function access_right($fund_id) {
         throw new Exception("Not implemented yet!");

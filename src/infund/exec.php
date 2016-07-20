@@ -31,12 +31,12 @@ class Cmds {
 class User {
 
     // Access rights for funds:
-    const ACCESS_NONE       = 0;
     const ACCESS_OWN        = 1;
     const ACCESS_ADMIN      = 2;
     const ACCESS_EDIT       = 3;
     const ACCESS_SUGGEST    = 4;
     const ACCESS_VIEW       = 5;
+    const ACCESS_NONE       = 6;
 
     private $id;
 
@@ -188,6 +188,11 @@ class UnknownCommandError extends ExecException {
     // TODO
 }
 
+/// Raise when user tried to perform something that he hasn't got rights for.
+class RightsViolationError extends ExecException {
+    // TODO
+}
+
 /// Holds data about current data system state.
 class HistoryCache {
 
@@ -276,6 +281,12 @@ class Executor {
     }
 
     private function cmd_create_fund($cmd, $user) {
+        // Check if user has rights for this command.
+        $rights = $user->access_right($cmd->parent_fund_id);
+        if ($rights < User::ACCESS_ADMIN) {
+            throw new RightsViolationError();
+        }
+
         throw Exception("Not implemented yet!");
     }
 }

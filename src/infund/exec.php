@@ -111,11 +111,6 @@ class HistoryIO {
         );
     }
 
-    /// Read the whole history to form the cache.
-    public function fill_history_cache($cache) {
-        throw new Exception("Not implemented yet!");
-    }
-
 }
 
 /// Any execution error.
@@ -142,7 +137,7 @@ class HistoryCache {
 
     public function __construct($history) {
         $this->max_fund_id = 0;
-        $history->fill_history_cache($this);
+        Executor::exec_history($this);
         // TODO save and load from file.
     }
 
@@ -178,7 +173,8 @@ class Executor {
     }
 
     /// Execute history and form the cache.
-    public static function exec_hisory() {
+    /// Given cache will be updated to the newest history.
+    public static function exec_hisory($cache) {
         // TODO
     }
 }

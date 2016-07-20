@@ -177,6 +177,10 @@ class HistoryCache {
         $this->max_fund_id += 1;
     }
 
+    public function save_changes() {
+        // TODO currently there is no cache file to save into.
+    }
+
 }
 
 /// Executes commands and save changes to cache and history.

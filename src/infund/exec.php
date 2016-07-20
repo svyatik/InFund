@@ -156,6 +156,7 @@ class HistoryCache {
 
 }
 
+/// Executes commands and save changes to cache and history.
 class Executor {
 
     private $cache;

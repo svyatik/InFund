@@ -27,6 +27,69 @@ class Cmds {
 
 }
 
+/// Represents fund hierarchy.
+class FundHierarchy {
+
+    const ROOT_FUND_ID = 0;
+
+    private $fund_array; // All funds sorted by id.
+
+    class Fund {
+
+        private $id;
+        private $parent_id;
+
+        public function __construct($id, $parent_id) {
+            $this->id           = $id;
+            $this->parent_id    = $parent_id;
+        }
+
+        public function id() {
+            return $this->id;
+        }
+
+        public function parent_id() {
+            return $this->parent_id;
+        }
+
+    }
+
+    /// To create fund hierarchy class, you need to transfere the array of
+    /// all Fund class objects that are present in the history.
+    public function __construct($fund_array) {
+        $this->fund_array = $fund_array;
+    }
+
+    /// Find fund in the hierarchy with the given ID.
+    ///
+    /// Then generate the array of the fund IDs, where first
+    /// one is the root fund ID, each next is the parent fund ID of
+    /// the given one, and the last is actually the given fund ID.
+    ///
+    /// Return NULL if fund with the given ID does not exist.
+    public function get_path($id) {
+        $fund = $this->fund_array[$id];
+
+        // Check if fund exists.
+        if ($fund == NULL) {
+            return NULL;
+        }
+
+        $arr = array(0 => $fund);
+
+        // While current fund is not a root fund.
+        while ($fund != ROOT_FUND_ID) {
+            $fund = $this->fund_array($fund->parent_id);
+
+            // Add at the beginning new fund ID.
+            array_unshift($arr, $fund);
+        }
+
+        return $arr;
+    }
+
+}
+
 /// Represents system user that send some data to the executor.
 class User {
 

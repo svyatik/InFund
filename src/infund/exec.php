@@ -16,7 +16,13 @@ class Cmds {
 /// Use history filter to filtrate some particular entries from the whole
 /// history.
 class HistoryFilter {
-    // TODO
+
+    /// Array of the rules.
+    private $rules;
+
+    public function __construct() {
+        $this->rules = array();
+    }
 }
 
 /// This calss performs History File input/output.

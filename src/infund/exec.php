@@ -287,6 +287,6 @@ class Executor {
             throw new RightsViolationError();
         }
 
-        throw Exception("Not implemented yet!");
+        throw new Exception("Not implemented yet!");
     }
 }

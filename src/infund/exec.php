@@ -22,6 +22,12 @@ class Cmds {
 
 }
 
+/// Use history filter to filtrate some particular entries from the whole
+/// history.
+class HistoryFilter {
+    // TODO
+}
+
 /// This calss performs History File input/output.
 class HistoryIO {
 

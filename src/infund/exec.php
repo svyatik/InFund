@@ -23,6 +23,12 @@ class HistoryFilter {
     public function __construct() {
         $this->rules = array();
     }
+
+    /// Check if some history entry passes current filter.
+    public function passes_filter($entry) {
+        // TODO
+        return TRUE;
+    }
 }
 
 /// This calss performs History File input/output.

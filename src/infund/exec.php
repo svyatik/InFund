@@ -221,9 +221,9 @@ class Executor {
     private function exec_group_($cmds, $user) {
         $count = cmds.count();
         for ($i = 0; $i < $count; $i++) {
-            $cmd = $cmds[$i]->cmd;
+            $cmd = $cmds[$i];
 
-            switch($cmd) {
+            switch($cmd->cmd) {
                 case Cmds::CREATE_FUND:
                     // TODO
                     break;

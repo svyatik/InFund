@@ -103,6 +103,11 @@ class HistoryIO {
         );
     }
 
+    /// Read the whole history to form the cache.
+    public function fill_history_cache($cache) {
+        throw new Exception("Not implemented yet!");
+    }
+
 }
 
 /// Any execution error.
@@ -127,8 +132,9 @@ class HistoryCache {
     // Last ID that was allocated for some object type:
     private $max_fund_id;
 
-    public function __construct() {
-        throw new Exception("Not implemented yet!");
+    public function __construct($history) {
+        $this->max_fund_id = 0;
+        $history->fill_history_cache($this);
     }
 
     public function max_fund_id() {

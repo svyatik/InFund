@@ -106,9 +106,9 @@ class User {
     /// Access rights array for each fund, where it is not 'none' or derived.
     private $rights;
 
-    public function __construct($id, $rights) {
+    public function __construct($id, $history) {
         $this->id       = $id;
-        $this->rights   = $rights;
+        // FIXME load data about user from the history.
     }
 
     /// Get access right for particular fund.
@@ -139,6 +139,30 @@ class HistoryFilter {
 /// This calss performs History File input/output.
 class HistoryIO {
 
+    /// Holds data about current data system state.
+    class HistoryCache {
+
+        // Last ID that was allocated for some object type:
+        public $max_fund_id;
+
+        public function __construct() {
+            $this->max_fund_id = 0;
+        }
+
+        public function max_fund_id() {
+            return $this->max_fund_id;
+        }
+
+        public function max_fund_id_increment() {
+            $this->max_fund_id += 1;
+        }
+
+        public function save_changes() {
+            // TODO currently there is no cache file to save into.
+        }
+
+    }
+
     /// The history file location.
     const FILE_LOCATION = "data/infund/history";
 
@@ -146,7 +170,12 @@ class HistoryIO {
     // Backup byte count to restore history if changes discard requested.
     private $byte_index_backup;
 
+    // TODO make history cache internal HistoryIO class.
+    private $cache;
+
     public function __construct() {
+        $this->$cache = new HistoryCache();
+
         $file_exists = file_exists(FILE_LOCATION));
 
         // Open/create file for new operations.
@@ -189,6 +218,8 @@ class HistoryIO {
         fwrite($this->file, pack($entry->user, "V"));
         fwrite($this->file,      $entry->data      );
         fwrite($this->file, "\n");
+
+        // FIXME update cache
     }
 
     private function create_history_entry($cmd, $user, $data) {
@@ -226,11 +257,18 @@ class HistoryIO {
     /// to the state when no command in the group was launched.
     public function discard_changes() {
         ftruncate($this->file, $this->byte_index_backup);
+        // FIXME reset cache too.
     }
 
     public function save_changes() {
         fseek($this->file, 0, SEEK_END);
         $this->byte_index_backup = ftell($this->file);
+        $this->cache->save_changes();
+    }
+
+    /// Generate fund hierarchy.
+    public function fund_hierarchy() {
+        throw new Exception("Not implemented yet.");
     }
 
 }
@@ -254,48 +292,6 @@ class UnknownCommandError extends ExecException {
 /// Raise when user tried to perform something that he hasn't got rights for.
 class RightsViolationError extends ExecException {
     // TODO
-}
-
-/// Holds data about current data system state.
-class HistoryCache {
-
-    // Last ID that was allocated for some object type:
-    private $max_fund_id;
-
-    public function __construct($history) {
-        $this->max_fund_id = 0;
-        $this->load();
-    }
-
-    // Launch to load data from history or cache file.
-    private function load() {
-        Executor::exec_history($this);
-        // TODO add cache file support.
-    }
-
-    // Discard any changes. Warning: if changes were applied to history too,
-    // revert history first.
-    public function discard_changes() {
-        $this->load();
-    }
-
-    public function max_fund_id() {
-        return $this->max_fund_id;
-    }
-
-    public function max_fund_id_increment() {
-        $this->max_fund_id += 1;
-    }
-
-    public function save_changes() {
-        // TODO currently there is no cache file to save into.
-    }
-
-    /// Generate fund hierarchy.
-    public function fund_hierarchy() {
-        throw new Exception("Not implemented yet.");
-    }
-
 }
 
 /// Executes commands and save changes to cache and history.

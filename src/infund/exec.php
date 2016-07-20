@@ -225,11 +225,15 @@ class Executor {
 
             switch($cmd->cmd) {
                 case Cmds::CREATE_FUND:
-                    // TODO
+                    $this->cmd_create_fund($cmd, $user);
                     break;
                 default:
                     throw new UnknownCommandError();
             }
         }
+    }
+
+    private function cmd_create_fund($cmd, $user) {
+        throw Exception("Not implemented yet!");
     }
 }

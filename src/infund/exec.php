@@ -38,6 +38,8 @@ class HistoryIO {
     const FILE_LOCATION = "data/infund/history";
 
     private $file;
+    // Backup byte count to restore history if changes discard requested.
+    private $byte_index_backup;
 
     public function __construct() {
         $file_exists = file_exists(FILE_LOCATION));
@@ -50,6 +52,10 @@ class HistoryIO {
             // If it does not exist, add header to the file.
             $this->init_new_file();
         }
+
+        // Backup last valid entry position.
+        fseek($this->file, 0, SEEK_END);
+        $this->byte_index_backup = ftell($this->file);
     }
 
     private function init_new_file() {

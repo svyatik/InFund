@@ -154,6 +154,16 @@ class HistoryCache {
         $this->max_fund_id += 1;
     }
 
+    // Update cache as if this command was called.
+    public function cmd_create_fund($data) {
+        // Change the cache.
+        $this->max_fund_id_increment();
+
+        return (object) array(
+            'id' => $this->max_fund_id;
+        );
+    }
+
 }
 
 class Executor {
@@ -186,14 +196,8 @@ class Executor {
             throw new UnsupportedDataError();
         }
 
-        // Get last fund id and increment it.
-        $last_id = $this->cache->max_fund_id_increment();
-
-        // Get new unique fund id.
-        $new_id = $this->cache->max_fund_id();
-
-        // Wrap id into object.
-        $data = (object) array('id' => $new_id);
+        // Tell cache to execute the command.
+        $data = $this->cache->cmd_create_fund($user, $data);
 
         // Save command and data to the history.
         $this->history->push_cmd(Cmds::CREATE_FUND, $user, $data);

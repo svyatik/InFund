@@ -141,7 +141,7 @@ class HistoryFilter {
 class HistoryIO {
 
     /// Holds data about current data system state.
-    class HistoryCache {
+    private class HistoryCache {
 
         // Last ID that was allocated for some object type:
         public $max_fund_id;

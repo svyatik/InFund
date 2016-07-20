@@ -40,7 +40,7 @@ class User {
 
     private $id;
 
-    /// Access rights array for each fund, where it is not 'none'.
+    /// Access rights array for each fund, where it is not 'none' or derived.
     private $rights;
 
     public function __construct($id, $rights) {

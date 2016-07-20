@@ -117,6 +117,12 @@ class HistoryIO {
         );
     }
 
+    /// If some command in the group failed, you can revert history
+    /// to the state when no command in the group was launched.
+    public function discard_changes() {
+        ftruncate($this->file, $this->byte_index_backup);
+    }
+
 }
 
 /// Any execution error.

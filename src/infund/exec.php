@@ -27,6 +27,29 @@ class Cmds {
 
 }
 
+/// Represents system user that send some data to the executor.
+class User {
+
+    // Access rights for funds:
+    const ACCESS_NONE       = 0;
+    const ACCESS_OWN        = 1;
+    const ACCESS_ADMIN      = 2;
+    const ACCESS_EDIT       = 3;
+    const ACCESS_SUGGEST    = 4;
+    const ACCESS_VIEW       = 5;
+
+    private $id;
+
+    /// Access rights array for each fund, where it is not 'none'.
+    private $rights;
+
+    /// Get access right for particular fund.
+    public function access_right($fund_id) {
+        throw new Exception("Not implemented yet!");
+    }
+
+}
+
 /// Use history filter to filtrate some particular entries from the whole
 /// history.
 class HistoryFilter {

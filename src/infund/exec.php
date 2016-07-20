@@ -181,11 +181,12 @@ class Executor {
     /// Execute command group for user request.
     public static function exec_group($cmds, $user) {
         $self = new Executor();
-        $last_entry_id = $self->history->last_entry_id;
         try {
             $self->exec_group_($cmds, $user);
+            $history->save_changes();
+            $cache->save_changes();
         } catch (Exception $e) {
-            $history->revert_to($last_entry_id);
+            $history->discard_changes();
             $cache->discard_changes();
         }
     }
